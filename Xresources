@@ -1,0 +1,87 @@
+!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
+URxvt*font:             xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true
+URxvt*boldFont:         xft:DejaVu Sans Mono for Powerline:bold:pixelsize=13:antialias=true:hinting=true
+!URxvt*font:             xft:Monospace:pixelsize=14
+!URxvt*boldFont:         xft:Monospace:bold:pixelsize=13
+!xterm*boldMode:         false
+
+! Fix font space
+URxvt*letterSpace:      -1
+
+! Scrollbar
+!URxvt.scrollStyle:     rxvt
+URxvt.scrollBar:        false
+
+URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback
+URxvt.url-launcher:     /usr/bin/chromium
+URxvt.matcher.button:   1
+
+! extensions -> font-size
+! https://github.com/majutsushi/urxvt-font-size
+!URxvt.keysym.C-Up:     perl:font-size:increase
+!URxvt.keysym.C-Down:   perl:font-size:decrease
+
+URxvt.keysym.C-Delete:  perl:matcher:last
+URxvt.keysym.M-Delete:  perl:matcher:list
+
+! extensions -> clipboard (requires xsel)
+! https://github.com/muennich/urxvt-perls
+!URxvt.keysym.C-C:      perl:clipboard:copy
+!URxvt.keysym.C-V:      perl:clipboard:paste
+
+URxvt*urgentOnBell:     true
+URxvt.cursorBlink:      1
+
+!URxvt.colorIT:         #87af5f
+!URxvt.colorBD:         #d7d7d7
+!URxvt.colorUL:         #87afd7
+
+! Deactivate KEYCAP PICTURE INSERT MODE when C-S are pressed
+URxvt*iso14755:         false
+URxvt*iso14755_52:      false
+
+*fading:                20
+!*fadeColor:             #192033
+!*pointerColorBackground: S_green
+!*pointerColorForeground: S_cyan
+
+#define S_black         #2c2e2f
+#define S_black_light   #313333
+#define S_red           #BF3939
+#define S_red_light     #F24949
+#define S_green         #38912b
+#define S_green_light   #74A874
+#define S_yellow        #C2923A
+#define S_yellow_light  #DBA642
+#define S_blue          #438EC3
+#define S_blue_light    #00a6ff
+#define S_magenta       #b5478d
+#define S_magenta_light #e85aab
+#define S_cyan          #258c8d
+#define S_cyan_light    #36bfbf
+#define S_white         #516269
+#define S_white_light   #8E9FA4
+
+*.color0:               S_black
+*.color8:               S_black_light
+*.color1:               S_red
+*.color9:               S_red_light
+*.color2:               S_green
+*.color10:              S_green_light
+*.color3:               S_yellow
+*.color11:              S_yellow_light
+*.color4:               S_blue
+*.color12:              S_blue_light
+*.color5:               S_magenta
+*.color13:              S_magenta_light
+*.color6:               S_cyan
+*.color14:              S_cyan_light
+*.color7:               S_white
+*.color15:              S_white_light
+
+! special
+*.foreground:           S_white_light
+*.background:           S_black
+!urxvt*transparent:      true
+!*.cursorColor:          #S_white_light
+

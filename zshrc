@@ -1,0 +1,164 @@
+. ~/.config/colors.sh
+eval $(dircolors ~/.config/.dir_colors)
+. ~/.config/less_colors.sh
+. ~/.config/grep_colors.sh
+. ~/.config/aliases.sh
+
+#. /usr/bin/liquidprompt
+
+#PURE_PROMPT_SYMBOL='❯❯❯'
+# TODO change this
+source ~/.config/pure/async.zsh
+source ~/.config/pure/pure.zsh
+
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# append history list to the history file; this is the default but we make sure
+# because it's required for share_history.
+setopt append_history
+
+# import new commands from the history file also in other zsh-session
+setopt share_history
+
+# save each command's beginning timestamp and the duration to the history file
+setopt extended_history
+
+# If a new command line being added to the history list duplicates an older
+# one, the older command is removed from the list
+setopt histignorealldups
+
+# remove command lines from the history list when the first character on the
+# line is a space
+setopt histignorespace
+
+# if a command is issued that can't be executed as a normal command, and the
+# command is the name of a directory, perform the cd command to that directory.
+setopt auto_cd
+
+# in order to use #, ~ and ^ for filename generation grep word
+# *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for word not in compressed files
+# don't forget to quote '^', '~' and '#'!
+setopt extended_glob
+
+# display PID when suspending processes as well
+setopt longlistjobs
+
+# try to avoid the 'zsh: no matches found...'
+setopt nonomatch
+
+# report the status of backgrounds jobs immediately
+setopt notify
+
+# whenever a command completion is attempted, make sure the entire command path
+# is hashed first.
+setopt hash_list_all
+
+# not just at the end
+setopt completeinword
+
+# Don't send SIGHUP to background processes when the shell exits.
+setopt nohup
+
+# make cd push the old directory onto the directory stack.
+setopt auto_pushd
+
+# avoid "beep"ing
+setopt nobeep
+
+# don't push the same dir twice.
+setopt pushd_ignore_dups
+
+# * shouldn't match dotfiles. ever.
+#setopt noglobdots
+
+# use zsh style word splitting
+setopt noshwordsplit
+
+# don't error out when unset parameters are used
+setopt unset
+
+## Completions
+autoload -U compinit
+compinit -C
+
+# Autocompletion with an arrow-key driven interface
+zstyle ':completion:*' menu select
+## case-insensitive (all),partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Variables
+export EDITOR=vim
+CDPATH=".:${HOME}"
+
+# Disable Ctrl+s
+stty -ixon
+
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=10000 # useful for setopt append_history
+
+# dirstack handling
+DIRSTACKFILE="$HOME/.cache/zsh_dirs_hist"
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+
+chpwd() {
+  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+}
+
+DIRSTACKSIZE=20
+
+setopt autopushd pushdsilent pushdtohome
+
+# Remove duplicate entries
+setopt pushdignoredups
+
+# This reverts the +/- operators.
+setopt pushdminus
+
+set -o emacs
+# Vim-style word movement: Alt+[w|b]
+#bindkey "\ew" forward-word
+#bindkey "\eb" backward-word
+#
+#bindkey "\eh" backward-char
+#bindkey "\el" forward-char
+#
+## Vim-style home/end: Alt+[h|l]
+#bindkey "\ei" beginning-of-line
+#bindkey "\ea" end-of-line
+#
+## Alt+r/s instead of Ctrl+r/s
+##bindkey "\er" history-incremental-search-backward
+##bindkey "\es" history-incremental-search-forward
+#
+#bindkey "\ed" backward-kill-word
+#bindkey "\ep" yank
+#
+## Vim-style history search: Alt+[j|k]
+#bindkey "\ek" up-line-or-search
+#bindkey "\ej" down-line-or-search
+#
+#bindkey "\e." insert-last-word
+#
+#bindkey '^R' history-incremental-search-backward
+
+
+# Esc+v to edit current line with $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# Set arrows to browse through history with context
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '\eOA' up-line-or-beginning-search
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\eOB' down-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
