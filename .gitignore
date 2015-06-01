@@ -1,0 +1,21 @@
+# Ignore everything …
+*
+
+# but …
+!.gitignore
+!.dir_colors
+!aliases.sh
+!colors.sh
+!dunst/dunstrc
+!grep_colors.sh
+!i3pystatus.conf
+!i3status/config
+!less_colors.sh
+!liquidpromptrc
+!screenrc
+!vimrc
+!vim/rc_neobundle.vimrc
+!vim/rc_vundle.vimrc
+!xprofile
+!Xresources
+!zshrc
