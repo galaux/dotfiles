@@ -133,6 +133,7 @@ map <F5> :!ctags -R --exclude=target --exclude=node_modules --exclude=public --e
 
 " Clear search highlighting with Esc+Space
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+:nnoremap <F6> :set wrap!<CR>
 " Highlight word under cursor without jumping to next occurrence
 :nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
