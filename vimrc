@@ -118,6 +118,10 @@ au BufNewFile,BufRead *.md set filetype=markdown
 au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "bsdtar"   " Arch Linux packages opened with bsdtar
 "au BufEnter *.scala setl formatprg=java\ -jar\ /opt/scalariform.jar\ --stdin\ --stdout
 
+let g:scala_sort_across_groups=1
+let g:scala_first_party_namespaces=
+  \ '\(controllers\|events\|json|\kafka\|models\|modules\|security\|services\)'
+
 " ─────────────────────────────────────────────────────────────────────────────
 " Mappings
 let mapleader=","
