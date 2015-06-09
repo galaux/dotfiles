@@ -156,3 +156,5 @@ nnoremap <Leader>f :Ack!<Space>
 nmap <F7> :TagbarToggle<CR>
 nmap <F4> :NERDTreeToggle<CR>
 
+map <C-H> :execute "tabmove" tabpagenr() - 2 <CR>
+map <C-L> :execute "tabmove" tabpagenr() + 1<CR>
