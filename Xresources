@@ -42,6 +42,13 @@
 !*pointerColorBackground: S_green
 !*pointerColorForeground: S_cyan
 
+! Anti-aliasing
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
 ! ─────────────────────────────────────────────────────────────────────────────
 
 !URxvt*font:             xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
