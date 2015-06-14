@@ -10,10 +10,11 @@
 !xprofile
 !zshrc
 
+!.dir_colors
 !aliases.sh
 !colors.sh
-!.dir_colors
 !dunst/dunstrc
+!git/config
 !grep_colors.sh
 !i3pystatus.conf
 !i3status/config
