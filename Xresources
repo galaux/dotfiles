@@ -1,49 +1,4 @@
-!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
-URxvt*font:             xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true
-URxvt*boldFont:         xft:DejaVu Sans Mono for Powerline:bold:pixelsize=13:antialias=true:hinting=true
-!URxvt*font:             xft:Monospace:pixelsize=14
-!URxvt*boldFont:         xft:Monospace:bold:pixelsize=13
-!xterm*boldMode:         false
-
-! Fix font space
-URxvt*letterSpace:      -1
-
-! Scrollbar
-!URxvt.scrollStyle:     rxvt
-URxvt.scrollBar:        false
-
-URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback
-URxvt.url-launcher:     /usr/bin/chromium
-URxvt.matcher.button:   1
-
-! extensions -> font-size
-! https://github.com/majutsushi/urxvt-font-size
-!URxvt.keysym.C-Up:     perl:font-size:increase
-!URxvt.keysym.C-Down:   perl:font-size:decrease
-
-URxvt.keysym.C-Delete:  perl:matcher:last
-URxvt.keysym.M-Delete:  perl:matcher:list
-
-! extensions -> clipboard (requires xsel)
-! https://github.com/muennich/urxvt-perls
-!URxvt.keysym.C-C:      perl:clipboard:copy
-!URxvt.keysym.C-V:      perl:clipboard:paste
-
-URxvt*urgentOnBell:     true
-URxvt.cursorBlink:      1
-
-!URxvt.colorIT:         #87af5f
-!URxvt.colorBD:         #d7d7d7
-!URxvt.colorUL:         #87afd7
-
-! Deactivate KEYCAP PICTURE INSERT MODE when C-S are pressed
-URxvt*iso14755:         false
-URxvt*iso14755_52:      false
-
-*fading:                20
-!*fadeColor:             #192033
-!*pointerColorBackground: S_green
-!*pointerColorForeground: S_cyan
+! ─────────────────────────────────────────────────────────────────────────────
 
 #define S_black         #2c2e2f
 #define S_black_light   #313333
@@ -79,9 +34,54 @@ URxvt*iso14755_52:      false
 *.color7:               S_white
 *.color15:              S_white_light
 
-! special
 *.foreground:           S_white_light
 *.background:           S_black
-!urxvt*transparent:      true
 !*.cursorColor:          #S_white_light
+*fading:                10
+!*fadeColor:             #192033
+!*pointerColorBackground: S_green
+!*pointerColorForeground: S_cyan
 
+! ─────────────────────────────────────────────────────────────────────────────
+
+!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
+URxvt*font:             xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true
+URxvt*boldFont:         xft:DejaVu Sans Mono for Powerline:bold:pixelsize=13:antialias=true:hinting=true
+!URxvt*font:             xft:Monospace:pixelsize=14
+!URxvt*boldFont:         xft:Monospace:bold:pixelsize=13
+!xterm*boldMode:         false
+
+URxvt*letterSpace:      -1
+
+URxvt*termName:         rxvt-256color
+
+!URxvt.scrollStyle:     rxvt
+URxvt.scrollBar:        false
+
+URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback
+URxvt.url-launcher:     /usr/bin/chromium
+URxvt.matcher.button:   1
+
+! extensions -> font-size
+! https://github.com/majutsushi/urxvt-font-size
+!URxvt.keysym.C-Up:     perl:font-size:increase
+!URxvt.keysym.C-Down:   perl:font-size:decrease
+
+URxvt.keysym.C-Delete:  perl:matcher:last
+URxvt.keysym.M-Delete:  perl:matcher:list
+
+! extensions -> clipboard (requires xsel)
+! https://github.com/muennich/urxvt-perls
+!URxvt.keysym.C-C:      perl:clipboard:copy
+!URxvt.keysym.C-V:      perl:clipboard:paste
+
+URxvt*urgentOnBell:     true
+URxvt.cursorBlink:      1
+
+!URxvt.colorIT:         #87af5f
+!URxvt.colorBD:         #d7d7d7
+!URxvt.colorUL:         #87afd7
+
+! Deactivate KEYCAP PICTURE INSERT MODE when C-S are pressed
+URxvt*iso14755:         false
+URxvt*iso14755_52:      false
