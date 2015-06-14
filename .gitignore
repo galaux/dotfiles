@@ -3,6 +3,13 @@
 
 # but …
 !.gitignore
+
+!Xresources
+!screenrc
+!vimrc
+!xprofile
+!zshrc
+
 !aliases.sh
 !colors.sh
 !.dir_colors
@@ -12,9 +19,4 @@
 !i3status/config
 !less_colors.sh
 !liquidpromptrc
-!screenrc
-!vimrc
 !vimrc.neobundle
-!xprofile
-!Xresources
-!zshrc
