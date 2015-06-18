@@ -1,0 +1,3 @@
+--ignore-dir=target
+--ignore-file=is:tags
+--ignore-file=match:.log
