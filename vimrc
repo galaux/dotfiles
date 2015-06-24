@@ -89,8 +89,8 @@ let &listchars=''
 set listchars+=nbsp:˽           " example: Non breakable space
 set listchars+=tab:↹\           " example: 	Tabulation
 set listchars+=trail:·          " example: trailing space 
-set listchars+=precedes:◀
-set listchars+=extends:▶
+set listchars+=precedes:…
+set listchars+=extends:…
 
 set showfulltag               " show match pattern on tag word completion (template for functions)
 
