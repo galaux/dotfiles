@@ -78,7 +78,7 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 
-set colorcolumn=100         " show nth column
+set colorcolumn=80          " show nth column
 set scrolloff=20            " always show some lines around current one
 
 set nowrap                      " do not wrap long lines
