@@ -105,7 +105,7 @@ colorscheme agnostic
 set background=dark
 
 set wildmenu                  " enhanced mode command-line completion
-set wildignore=**/target/*
+set wildignore=**/target/*,**/node_modules/*,**/bower_components/*
 set wildmode=longest,full
 set wildignorecase            " ignore case when completing file names and directories
 
