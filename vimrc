@@ -1,52 +1,6 @@
-" ┌───────────────────────────────────────────────────────────────────────────┐
-" │   Plugin management                                                       │
-" └───────────────────────────────────────────────────────────────────────────┘
-"source ~/.vim/vimrc.vundle
 source ~/.vim/vimrc.neobundle
-" ─────────────────────────────────────────────────────────────────────────────
-
-" CTRL-P
-let g:ctrlp_root_markers = ['.ctrlp']
-let g:ctrlp_extensions = ['tag']
-map <C-i> :CtrlPTag <CR>
-
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" Eclim
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimQuickfixSignText = '> '
-let g:EclimLoclistSignText = '✘ '
-
-" Airline
-"let g:airline_theme='base16'
-"let s:load_the_theme = g:airline#themes#{g:airline_theme}#normal
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" Indent Guides
-let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8
-hi IndentGuidesOdd  ctermbg=0
-hi IndentGuidesEven ctermbg=8
-let g:indent_guides_guide_size = 4
-let g:indent_guides_start_level = 2
-
-" ─────────────────────────────────────────────────────────────────────────────
-" General settings
 
 " Auto-reload configuration files
-" source configuration files on save to apply all changes immediately
 autocmd! BufWritePost ~/vimrc         source $MYVIMRC
 autocmd! BufWritePost ~/.vimrc        source $MYVIMRC
 autocmd! BufWritePost ~/.vim/*.vimrc  source $MYVIMRC
@@ -88,8 +42,8 @@ set colorcolumn=80          " show nth column
 set scrolloff=20            " always show some lines around current one
 
 set nowrap                      " do not wrap long lines
-set list                        " Show tabs, nbsp, trailing spaces, …
 
+set list                        " Show tabs, nbsp, trailing spaces, …
 let &listchars=''
 "set listchars+=eol:¶
 set listchars+=nbsp:˽           " example: Non breakable space
@@ -112,23 +66,17 @@ set wildignorecase            " ignore case when completing file names and direc
 " Enable yanking from and to X
 set clipboard=unnamedplus
 
-set nodigraph
+"set nodigraph
 set lazyredraw      " prevent screen from being redrawn while executing macros
 
 let &showbreak = '↳ '         " string to put at the start of lines that have been wrapped
 set fillchars+=vert:│         " change vertical split char
 set fillchars+=fold:┄
 
-" ─────────────────────────────────────────────────────────────────────────────
 au BufNewFile,BufRead *.md set filetype=markdown
 au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "bsdtar"   " Arch Linux packages opened with bsdtar
 "au BufEnter *.scala setl formatprg=java\ -jar\ /opt/scalariform.jar\ --stdin\ --stdout
 
-let g:scala_sort_across_groups=1
-let g:scala_first_party_namespaces=
-  \ '\(controllers\|events\|json|\kafka\|models\|modules\|security\|services\)'
-
-" ─────────────────────────────────────────────────────────────────────────────
 " Mappings
 let mapleader=","
 :imap jj <Esc>
@@ -159,9 +107,7 @@ nnoremap <Leader>f :Ack!<Space>
 "nnoremap <A-l> <C-W><C-l>
 "nnoremap <A-h> <C-W><C-h>
 
-nmap <F7> :TagbarToggle<CR>
-nmap <F4> :NERDTreeToggle<CR>
-
+" Enable italic
 set t_ZH=[3m
 set t_ZR=[23m
 

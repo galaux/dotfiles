@@ -14,15 +14,61 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Add or remove your Bundles here:
+" You can specify revision/branch/tag.
+"NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" ─────────────────────────────────────────────────────────────────────────────
 "NeoBundle 'bling/vim-airline'
+" Airline
+"let g:airline_theme='base16'
+"let s:load_the_theme = g:airline#themes#{g:airline_theme}#normal
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
 NeoBundle 'kien/ctrlp.vim'
+" CTRL-P
+let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_extensions = ['tag']
+map <C-i> :CtrlPTag <CR>
+
 NeoBundle 'fabi1cazenave/suckless.vim'
+
 NeoBundle 'shougo/neocomplete.vim'
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 NeoBundle 'derekwyatt/vim-scala'
+let g:scala_sort_across_groups=1
+let g:scala_first_party_namespaces=
+  \ '\(controllers\|events\|json|\kafka\|models\|modules\|security\|services\)'
+
 NeoBundle 'gre/play2vim'
+
 "NeoBundle 'osef/eclim'
+"let g:EclimCompletionMethod = 'omnifunc'
+"let g:EclimQuickfixSignText = '✓ '
+"let g:EclimLoclistSignText = '✗ '
+
 NeoBundle 'nathanaelkane/vim-indent-guides'
+" Indent Guides
+let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8
+hi IndentGuidesOdd  ctermbg=0
+hi IndentGuidesEven ctermbg=8
+let g:indent_guides_guide_size = 4
+let g:indent_guides_start_level = 2
+
+
 NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'vim-scripts/paredit.vim'
@@ -30,7 +76,11 @@ NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'majutsushi/tagbar'
+nmap <F7> :TagbarToggle<CR>
+
 NeoBundle 'scrooloose/nerdtree'
+nmap <F4> :NERDTreeToggle<CR>
+
 NeoBundle 'jamessan/vim-gnupg'
 "NeoBundle 'venantius/vim-eastwood'
 NeoBundle 'tpope/vim-fireplace'
@@ -41,8 +91,7 @@ NeoBundle 'tpope/vim-fireplace'
 "NeoBundle 'Shougo/neosnippet-snippets'
 
 
-" You can specify revision/branch/tag.
-"NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+" ─────────────────────────────────────────────────────────────────────────────
 
 " Required:
 call neobundle#end()
