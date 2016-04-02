@@ -12,6 +12,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # ─────────────────────────────────────────────────────────────────────────────
 setopt prompt_subst #allow function calls in prompt
+#autoload -Uz cdr
 #autoload -U promptnl
 autoload -Uz vcs_info
 autoload -U colors && colors
@@ -20,20 +21,24 @@ prompt_prev_cmd() {
   if [[ $? == 0 ]]; then
     echo ""
   else
-    echo "%{$fg[red]%}✗"
+    echo "%F{red}✗%f"
   fi
 }
 
 prompt_pwd_wrapper() {
-  echo "%~"
+  echo "%F{blue}%~%f"
 }
 
 root_user_display() {
-  echo "%{$fg[red]%}%n"
+  echo "%F{red}%n%f"
+}
+
+regular_user_display() {
+  echo "%F{white}%n%f"
 }
 
 host_display() {
-  echo "%{$fg_bold[white]%}@%{$reset_color$fg[yellow]%}$(hostname -s)"
+  echo "@%F{white}%f$(hostname -s)%f"
 }
 
 prompt_user_host_wrapper() {
@@ -45,56 +50,60 @@ prompt_user_host_wrapper() {
     fi
   else
     if [[ $_UID != 0 ]]; then
-      echo "%n$(host_display) "
+      echo "$(regular_user_display)$(host_display) "
     else
       echo "$(root_user_display)$(host_display) "
     fi
   fi
 }
 
-zstyle ':vcs_info:*' actionformats \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats       \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '%F{green}●%f'
+zstyle ':vcs_info:*' unstagedstr "%F{red}●%f"
+zstyle ':vcs_info:*' actionformats             \
+  "%F{red}%b%F{blue}|%F{green}%a%f "
+zstyle ':vcs_info:*' formats                   \
+  "%F{grey}%b%f %m%u%c "
 
-zstyle ':vcs_info:*' enable git cvs svn
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat \
+  "%b%F{1}:%F{3}%r"
 
 vcs_info_wrapper() {
   vcs_info
   if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}"
+    echo "%F{grey}${vcs_info_msg_0_}%f "
   fi
 }
 
-RPROMPT=$'$(prompt_prev_cmd)'
+_before=0
+_elapsed=-1
+ELAPSED_THRESHOLD=3
+
+prompt_elapsed() {
+  if [[ $_elapsed -gt $ELAPSED_THRESHOLD ]]; then
+    echo " $(date -u -d @${_elapsed} +%T)"
+  fi
+}
+
+RPROMPT=$'$(prompt_prev_cmd)$(prompt_elapsed)'
 
 PROMPT=$'
 $(prompt_pwd_wrapper) $(prompt_user_host_wrapper)$(vcs_info_wrapper)
 ❯ '
 
-# https://gist.github.com/wancw/f6d0e6634228cd9e3da3
-_tr_current_cmd="?"
-_tr_sec_begin="${SECONDS}"
-_tr_ignored="yes"
-TIME_REPORT_THRESHOLD="10"
-
-preexec () {
-  _tr_current_cmd="$2"
-  _tr_sec_begin="$SECONDS"
-  _tr_ignored=""
+function preexec() {
+  _before=$SECONDS
 }
 
-precmd () {
-  local te
-  te=$((${SECONDS}-${_tr_sec_begin}))
-  if [[ "x${_tr_ignored}" = "x" && $te -gt $TIME_REPORT_THRESHOLD  ]] ; then
-    _tr_ignored="yes"
-    echo "\`${_tr_current_cmd}\` completed in ${te} seconds."
+function precmd() {
+  if [[ -z ${_before+x} ]]; then
+    _elapsed=0
+  else
+    _elapsed=$(($SECONDS-$_before))
   fi
+  unset _before
 }
-
-
 # ─────────────────────────────────────────────────────────────────────────────
 
 # append history list to the history file; this is the default but we make sure
