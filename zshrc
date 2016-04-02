@@ -3,6 +3,7 @@ eval $(dircolors ~/.config/.dir_colors)
 . ~/.config/less_colors.sh
 . ~/.config/grep_colors.sh
 . ~/.config/aliases.sh
+[[ -e ~/.config/zshrc.local ]] && . ~/.config/zshrc.local
 
 #. /usr/bin/liquidprompt
 
