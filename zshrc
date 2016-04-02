@@ -14,13 +14,22 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 setopt prompt_subst #allow function calls in prompt
 #autoload -U promptnl
 autoload -Uz vcs_info
+autoload -U colors && colors
+
+prompt_prev_cmd() {
+  if [[ $? == 0 ]]; then
+    echo ""
+  else
+    echo "%{$fg[red]%}✗"
+  fi
+}
 
 prompt_pwd_wrapper() {
   echo "%~"
 }
 
 root_user_display() {
-  echo "[RED]%n"
+  echo "%{$fg[red]%}%n"
 }
 
 host_display() {
@@ -36,7 +45,7 @@ prompt_user_host_wrapper() {
     fi
   else
     if [[ $_UID != 0 ]]; then
-      echo "%n$(host_display)"
+      echo "%n$(host_display) "
     else
       echo "$(root_user_display)$(host_display) "
     fi
@@ -54,13 +63,37 @@ zstyle ':vcs_info:*' enable git cvs svn
 vcs_info_wrapper() {
   vcs_info
   if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}"
   fi
 }
+
+RPROMPT=$'$(prompt_prev_cmd)'
 
 PROMPT=$'
 $(prompt_pwd_wrapper) $(prompt_user_host_wrapper)$(vcs_info_wrapper)
 ❯ '
+
+# https://gist.github.com/wancw/f6d0e6634228cd9e3da3
+_tr_current_cmd="?"
+_tr_sec_begin="${SECONDS}"
+_tr_ignored="yes"
+TIME_REPORT_THRESHOLD="10"
+
+preexec () {
+  _tr_current_cmd="$2"
+  _tr_sec_begin="$SECONDS"
+  _tr_ignored=""
+}
+
+precmd () {
+  local te
+  te=$((${SECONDS}-${_tr_sec_begin}))
+  if [[ "x${_tr_ignored}" = "x" && $te -gt $TIME_REPORT_THRESHOLD  ]] ; then
+    _tr_ignored="yes"
+    echo "\`${_tr_current_cmd}\` completed in ${te} seconds."
+  fi
+}
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 
