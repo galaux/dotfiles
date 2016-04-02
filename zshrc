@@ -4,17 +4,65 @@ eval $(dircolors ~/.config/.dir_colors)
 . ~/.config/grep_colors.sh
 . ~/.config/aliases.sh
 [[ -e ~/.config/zshrc.local ]] && . ~/.config/zshrc.local
-
-#. /usr/bin/liquidprompt
-
-#PURE_PROMPT_SYMBOL='❯❯❯'
-# TODO change this
-source ~/.config/pure/async.zsh
-source ~/.config/pure/pure.zsh
-
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# TODO put somewhere else
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+setopt prompt_subst #allow function calls in prompt
+#autoload -U promptnl
+autoload -Uz vcs_info
+
+prompt_pwd_wrapper() {
+  echo "%~"
+}
+
+root_user_display() {
+  echo "[RED]%n"
+}
+
+host_display() {
+  echo "%{$fg_bold[white]%}@%{$reset_color$fg[yellow]%}$(hostname -s)"
+}
+
+prompt_user_host_wrapper() {
+  if [[ -z "$SSH_CLIENT" ]]; then
+    if [[ $_UID != 0 ]]; then
+      echo ""
+    else
+      echo "$(root_user_display) "
+    fi
+  else
+    if [[ $_UID != 0 ]]; then
+      echo "%n$(host_display)"
+    else
+      echo "$(root_user_display)$(host_display) "
+    fi
+  fi
+}
+
+zstyle ':vcs_info:*' actionformats \
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats       \
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+zstyle ':vcs_info:*' enable git cvs svn
+
+vcs_info_wrapper() {
+  vcs_info
+  if [ -n "$vcs_info_msg_0_" ]; then
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+  fi
+}
+
+PROMPT=$'
+$(prompt_pwd_wrapper) $(prompt_user_host_wrapper)$(vcs_info_wrapper)
+❯ '
+
+# ─────────────────────────────────────────────────────────────────────────────
 
 # append history list to the history file; this is the default but we make sure
 # because it's required for share_history.
