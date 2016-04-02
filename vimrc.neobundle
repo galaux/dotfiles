@@ -25,12 +25,16 @@ NeoBundle 'gre/play2vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'vim-scripts/paredit.vim'
+"NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jamessan/vim-gnupg'
+"NeoBundle 'venantius/vim-eastwood'
+NeoBundle 'tpope/vim-fireplace'
+"tpope/vim-salve
 
 " Must test: !!!
 "NeoBundle 'Shougo/neosnippet.vim'
