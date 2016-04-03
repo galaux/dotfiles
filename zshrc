@@ -61,13 +61,18 @@ zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{green}●%f'
 zstyle ':vcs_info:*' unstagedstr "%F{red}●%f"
+# Used if there is a special action going on in your current repository;
+# like an interactive rebase or a merge conflict.
 zstyle ':vcs_info:*' actionformats             \
   "%F{red}%b%F{blue}|%F{green}%a%f "
+# Used when actionformats is not used (which is most of the time).
 zstyle ':vcs_info:*' formats                   \
   "%F{grey}%b%f %m%u%c "
-
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat \
-  "%b%F{1}:%F{3}%r"
+# Some backends replace %b in the formats and actionformats styles above,
+# not only by a branch name but also by a revision number.
+# This style lets you modify how that string should look.
+#zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat \
+#  "%b%F{1}:%F{3}%r"
 
 vcs_info_wrapper() {
   vcs_info
