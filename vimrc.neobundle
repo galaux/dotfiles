@@ -82,9 +82,9 @@ NeoBundle 'scrooloose/nerdtree'
 nmap <F4> :NERDTreeToggle<CR>
 
 NeoBundle 'jamessan/vim-gnupg'
-"NeoBundle 'venantius/vim-eastwood'
 NeoBundle 'tpope/vim-fireplace'
-"tpope/vim-salve
+NeoBundle 'venantius/vim-cljfmt'
+"NeoBundle 'venantius/vim-eastwood'
 
 " Must test: !!!
 "NeoBundle 'Shougo/neosnippet.vim'
