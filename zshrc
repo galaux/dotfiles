@@ -43,13 +43,13 @@ host_display() {
 
 prompt_user_host_wrapper() {
   if [[ -z "$SSH_CLIENT" ]]; then
-    if [[ $_UID != 0 ]]; then
+    if [[ $UID != 0 ]]; then
       echo ""
     else
       echo "$(root_user_display) "
     fi
   else
-    if [[ $_UID != 0 ]]; then
+    if [[ $UID != 0 ]]; then
       echo "$(regular_user_display)$(host_display) "
     else
       echo "$(root_user_display)$(host_display) "
