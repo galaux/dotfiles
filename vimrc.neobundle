@@ -18,8 +18,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
 " ─────────────────────────────────────────────────────────────────────────────
+NeoBundle 'fabi1cazenave/suckless.vim'
+NeoBundle 'jamessan/vim-gnupg'
+
 "NeoBundle 'bling/vim-airline'
-" Airline
 "let g:airline_theme='base16'
 "let s:load_the_theme = g:airline#themes#{g:airline_theme}#normal
 "let g:airline_powerline_fonts = 1
@@ -27,16 +29,27 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 
+NeoBundle 'Raimondi/delimitMate'
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+au FileType clojure let g:delimitMate_expand_cr = 0
+au FileType clojure let g:delimitMate_expand_space = 0
+
+"NeoBundle 'nathanaelkane/vim-indent-guides'
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8
+"hi IndentGuidesOdd  ctermbg=0
+"hi IndentGuidesEven ctermbg=8
+"let g:indent_guides_guide_size = 4
+"let g:indent_guides_start_level = 2
+
 NeoBundle 'kien/ctrlp.vim'
-" CTRL-P
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_extensions = ['tag']
 map <C-i> :CtrlPTag <CR>
 
-NeoBundle 'fabi1cazenave/suckless.vim'
-
 NeoBundle 'shougo/neocomplete.vim'
-" Neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -45,6 +58,17 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+"NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'mileszs/ack.vim'
+
+"NeoBundle 'scrooloose/nerdtree'
+"nmap <F4> :NERDTreeToggle<CR>
+
+"NeoBundle 'majutsushi/tagbar'
+"nmap <F7> :TagbarToggle<CR>
+
+"NeoBundle 'rust-lang/rust.vim'
 
 NeoBundle 'derekwyatt/vim-scala'
 let g:scala_sort_across_groups=1
@@ -58,46 +82,22 @@ NeoBundle 'gre/play2vim'
 "let g:EclimQuickfixSignText = '✓ '
 "let g:EclimLoclistSignText = '✗ '
 
-NeoBundle 'nathanaelkane/vim-indent-guides'
-" Indent Guides
-let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8
-hi IndentGuidesOdd  ctermbg=0
-hi IndentGuidesEven ctermbg=8
-let g:indent_guides_guide_size = 4
-let g:indent_guides_start_level = 2
-
-
-NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'vim-scripts/paredit.vim'
-"NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'majutsushi/tagbar'
-nmap <F7> :TagbarToggle<CR>
-
-NeoBundle 'scrooloose/nerdtree'
-nmap <F4> :NERDTreeToggle<CR>
-
-NeoBundle 'jamessan/vim-gnupg'
-
-NeoBundle 'scrooloose/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
+"NeoBundle 'scrooloose/syntastic'
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_warning_symbol = '⚠'
+"let g:syntastic_error_symbol = '✗'
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
 
 NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'venantius/vim-cljfmt'
 let g:clj_fmt_autosave = 0
+"NeoBundle 'guns/vim-slamhound'
 
 NeoBundle 'venantius/vim-eastwood'
 NeoBundle 'tpope/vim-salve'
