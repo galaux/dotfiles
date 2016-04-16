@@ -38,6 +38,11 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 
+" For Java sources, if applicable
+autocmd FileType java setlocal shiftwidth=4
+"set noexpandtab
+"set tabstop=8
+
 set colorcolumn=80          " show nth column
 set scrolloff=20            " always show some lines around current one
 
