@@ -117,3 +117,10 @@ set t_ZR=[23m
 
 map <C-H> :execute "tabmove" tabpagenr() - 2 <CR>
 map <C-L> :execute "tabmove" tabpagenr() + 1<CR>
+
+let g:clojure_align_multiline_strings = 1
+
+au BufNewFile,BufRead *.edn set filetype=clojure
+au BufNewFile,BufRead *.avsc set filetype=json
+
+au FileType json setlocal equalprg=python\ -m\ json.tool
