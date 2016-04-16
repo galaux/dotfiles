@@ -95,13 +95,19 @@ NeoBundle 'gre/play2vim'
 "let g:syntastic_error_symbol = '✗'
 "let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
 
+" Required by vim-cljfmt and vim-eastwood
 NeoBundle 'tpope/vim-fireplace'
+" Required by vim-fireplace to fint `lein repl` connection
+NeoBundle 'tpope/vim-salve'
+" Code formatting, requires vim-fireplace
 NeoBundle 'venantius/vim-cljfmt'
 let g:clj_fmt_autosave = 0
-"NeoBundle 'guns/vim-slamhound'
+nnoremap <Leader>= :Cljfmt<Enter>
 
-NeoBundle 'venantius/vim-eastwood'
-NeoBundle 'tpope/vim-salve'
+" Namespace generation, requires vim-fireplace
+"NeoBundle 'guns/vim-slamhound'
+" Clojure lint tool, requires vim-fireplace
+"NeoBundle 'venantius/vim-eastwood'
 
 " Must test: !!!
 "NeoBundle 'Shougo/neosnippet.vim'

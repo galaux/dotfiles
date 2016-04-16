@@ -23,6 +23,7 @@
 !grep_colors.sh
 !i3pystatus.conf
 !i3status/config
+!lein_profiles.clj
 !less_colors.sh
 !liquidpromptrc
 !vimrc.neobundle
