@@ -83,17 +83,18 @@ NeoBundle 'gre/play2vim'
 "let g:EclimQuickfixSignText = '✓ '
 "let g:EclimLoclistSignText = '✗ '
 
-"NeoBundle 'scrooloose/syntastic'
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_warning_symbol = '⚠'
-"let g:syntastic_error_symbol = '✗'
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
+NeoBundle 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
+nnoremap <Leader>c :SyntasticCheck<Enter>
 
 " Required by vim-cljfmt and vim-eastwood
 NeoBundle 'tpope/vim-fireplace'
@@ -106,8 +107,8 @@ nnoremap <Leader>= :Cljfmt<Enter>
 
 " Namespace generation, requires vim-fireplace
 "NeoBundle 'guns/vim-slamhound'
-" Clojure lint tool, requires vim-fireplace
-"NeoBundle 'venantius/vim-eastwood'
+" Clojure lint tool, requires syntastic and vim-fireplace
+NeoBundle 'venantius/vim-eastwood'
 
 " Must test: !!!
 "NeoBundle 'Shougo/neosnippet.vim'
