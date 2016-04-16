@@ -106,7 +106,9 @@ let g:clj_fmt_autosave = 0
 nnoremap <Leader>= :Cljfmt<Enter>
 
 " Namespace generation, requires vim-fireplace
-"NeoBundle 'guns/vim-slamhound'
+NeoBundle 'guns/vim-slamhound'
+"nnoremap <LocalLeader>n :Slamhound<CR>
+
 " Clojure lint tool, requires syntastic and vim-fireplace
 NeoBundle 'venantius/vim-eastwood'
 
