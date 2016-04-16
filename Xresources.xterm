@@ -1,0 +1,14 @@
+XTerm*faceName: xft:DejaVuSansMono for Powerline:pixelsize=12
+XTerm*faceNameDoublesize: WenQuanYi Bitmap Song
+XTerm*termName: xterm-256color
+XTerm*metaSendsEscape: true
+XTerm*saveLines: 4096
+XTerm*cursorBlink: true
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on2Clicks: regex [^/@ \n]+
+XTerm*on3Clicks: regex [^ \n]+
+XTerm*on4Clicks: regex [^#$]+
+XTerm*on5Clicks: line
+*VT100*translations: #override Shift <Btn1Down>: exec-formatted("xdg-open '%t'", PRIMARY)
+XTerm*borderWidth: 0
+!xterm*boldMode: false

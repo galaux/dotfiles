@@ -1,38 +1,6 @@
-! ─────────────────────────────────────────────────────────────────────────────
-
-#define S_black         #2c2e2f
-#define S_black_light   #313333
-#define S_red           #BF3939
-#define S_red_light     #F24949
-#define S_green         #38912b
-#define S_green_light   #74A874
-#define S_yellow        #C2923A
-#define S_yellow_light  #DBA642
-#define S_blue          #438EC3
-#define S_blue_light    #00a6ff
-#define S_magenta       #b5478d
-#define S_magenta_light #e85aab
-#define S_cyan          #258c8d
-#define S_cyan_light    #36bfbf
-#define S_white         #516269
-#define S_white_light   #8E9FA4
-
-*.color0:               S_black
-*.color8:               S_black_light
-*.color1:               S_red
-*.color9:               S_red_light
-*.color2:               S_green
-*.color10:              S_green_light
-*.color3:               S_yellow
-*.color11:              S_yellow_light
-*.color4:               S_blue
-*.color12:              S_blue_light
-*.color5:               S_magenta
-*.color13:              S_magenta_light
-*.color6:               S_cyan
-*.color14:              S_cyan_light
-*.color7:               S_white
-*.color15:              S_white_light
+#include ".config/Xresources.color"
+#include ".config/Xresources.urxvt"
+#include ".config/Xresources.xterm"
 
 *.foreground:           S_white_light
 *.background:           S_black
@@ -48,62 +16,3 @@ Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
-
-! ─────────────────────────────────────────────────────────────────────────────
-
-!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true
-URxvt*font:             xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true
-URxvt*boldFont:         xft:DejaVu Sans Mono for Powerline:bold:pixelsize=13:antialias=true:hinting=true
-!URxvt*font:             xft:Monospace:pixelsize=14
-!URxvt*boldFont:         xft:Monospace:bold:pixelsize=13
-!xterm*boldMode:         false
-
-URxvt*letterSpace:      -1
-
-URxvt*termName:         rxvt-256color
-
-!URxvt.scrollStyle:     rxvt
-URxvt.scrollBar:        false
-
-URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback
-URxvt.url-launcher:     /usr/bin/chromium
-URxvt.matcher.button:   1
-
-! extensions -> font-size
-! https://github.com/majutsushi/urxvt-font-size
-!URxvt.keysym.C-Up:     perl:font-size:increase
-!URxvt.keysym.C-Down:   perl:font-size:decrease
-
-URxvt.keysym.C-Delete:  perl:matcher:last
-URxvt.keysym.M-Delete:  perl:matcher:list
-
-! extensions -> clipboard (requires xsel)
-! https://github.com/muennich/urxvt-perls
-!URxvt.keysym.C-C:      perl:clipboard:copy
-!URxvt.keysym.C-V:      perl:clipboard:paste
-
-URxvt*urgentOnBell:     true
-URxvt.cursorBlink:      1
-
-!URxvt.colorIT:         #87af5f
-!URxvt.colorBD:         #d7d7d7
-!URxvt.colorUL:         #87afd7
-
-! Deactivate KEYCAP PICTURE INSERT MODE when C-S are pressed
-URxvt*iso14755:         false
-URxvt*iso14755_52:      false
-
-! ─────────────────────────────────────────────────────────────────────────────
-XTerm*faceName: xft:DejaVuSansMono for Powerline:pixelsize=13
-xterm*faceNameDoublesize: WenQuanYi Bitmap Song
-xterm*termName: xterm-256color
-XTerm*metaSendsEscape: true
-Xterm*saveLines: 4096
-XTerm*cursorBlink: true
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-xterm*on2Clicks: regex [^/@ \n]+
-xterm*on3Clicks: regex [^ \n]+
-xterm*on4Clicks: regex [^#$]+
-xterm*on5Clicks: line
-*VT100*translations: #override Shift <Btn1Down>: exec-formatted("xdg-open '%t'", PRIMARY)
-xterm*borderWidth: 0

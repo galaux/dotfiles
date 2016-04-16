@@ -5,6 +5,9 @@
 !.gitignore
 
 !Xresources
+!Xresources.color
+!Xresources.urxvt
+!Xresources.xterm
 !screenrc
 !vimrc
 !xprofile

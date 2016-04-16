@@ -1,0 +1,34 @@
+#define S_black         #2c2e2f
+#define S_black_light   #313333
+#define S_red           #BF3939
+#define S_red_light     #F24949
+#define S_green         #38912b
+#define S_green_light   #74A874
+#define S_yellow        #C2923A
+#define S_yellow_light  #DBA642
+#define S_blue          #438EC3
+#define S_blue_light    #00a6ff
+#define S_magenta       #b5478d
+#define S_magenta_light #e85aab
+#define S_cyan          #258c8d
+#define S_cyan_light    #36bfbf
+#define S_white         #516269
+#define S_white_light   #8E9FA4
+
+*.color0:               S_black
+*.color8:               S_black_light
+*.color1:               S_red
+*.color9:               S_red_light
+*.color2:               S_green
+*.color10:              S_green_light
+*.color3:               S_yellow
+*.color11:              S_yellow_light
+*.color4:               S_blue
+*.color12:              S_blue_light
+*.color5:               S_magenta
+*.color13:              S_magenta_light
+*.color6:               S_cyan
+*.color14:              S_cyan_light
+*.color7:               S_white
+*.color15:              S_white_light
+

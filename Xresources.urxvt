@@ -1,0 +1,37 @@
+URxvt*font:             xft:DejaVu Sans Mono:pixelsize=12
+URxvt*boldFont:         xft:DejaVu Sans Mono:bold:pixelsize=12
+
+URxvt*letterSpace:      -2
+
+URxvt*termName:         rxvt-256color
+
+!URxvt.scrollStyle:     rxvt
+URxvt.scrollBar:        false
+
+URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback
+URxvt.url-launcher:     /usr/bin/chromium
+URxvt.matcher.button:   2
+
+! extensions -> font-size
+! https://github.com/majutsushi/urxvt-font-size
+!URxvt.keysym.C-Up:     perl:font-size:increase
+!URxvt.keysym.C-Down:   perl:font-size:decrease
+
+URxvt.keysym.C-Delete:  perl:matcher:last
+URxvt.keysym.M-Delete:  perl:matcher:list
+
+! extensions -> clipboard (requires xsel)
+! https://github.com/muennich/urxvt-perls
+!URxvt.keysym.C-C:      perl:clipboard:copy
+!URxvt.keysym.C-V:      perl:clipboard:paste
+
+URxvt*urgentOnBell:     true
+URxvt.cursorBlink:      1
+
+!URxvt.colorIT:         #87af5f
+!URxvt.colorBD:         #d7d7d7
+!URxvt.colorUL:         #87afd7
+
+! Deactivate KEYCAP PICTURE INSERT MODE when C-S are pressed
+URxvt*iso14755:         false
+URxvt*iso14755_52:      false
