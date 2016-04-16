@@ -71,7 +71,6 @@ set wildignorecase            " ignore case when completing file names and direc
 " Enable yanking from and to X
 set clipboard=unnamedplus
 
-"set nodigraph
 set lazyredraw      " prevent screen from being redrawn while executing macros
 
 let &showbreak = '↳ '         " string to put at the start of lines that have been wrapped
