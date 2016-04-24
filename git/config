@@ -11,3 +11,5 @@
 	default = simple
 [branch]
 	autosetuprebase = always
+[pull]
+	rebase = true
