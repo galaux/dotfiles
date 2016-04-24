@@ -4,16 +4,11 @@
 # but …
 !.gitignore
 
+!.dir_colors
 !Xresources
 !Xresources.color
 !Xresources.urxvt
 !Xresources.xterm
-!screenrc
-!vimrc
-!xprofile
-!zshrc
-
-!.dir_colors
 !ackrc
 !aliases.sh
 !colors.sh
@@ -26,4 +21,10 @@
 !lein_profiles.clj
 !less_colors.sh
 !liquidpromptrc
+!nvim/init.vim
+!nvim/vim-plug.vim
+!screenrc
+!vimrc
 !vimrc.neobundle
+!xprofile
+!zshrc
