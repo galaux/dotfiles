@@ -243,11 +243,9 @@ set -o emacs
 #
 #bindkey '^R' history-incremental-search-backward
 
-
-# Esc+v to edit current line with $EDITOR
 autoload -z edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey '^x^e' edit-command-line
 
 # Set arrows to browse through history with context
 autoload -Uz up-line-or-beginning-search
