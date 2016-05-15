@@ -58,7 +58,7 @@ map <C-i> :CtrlPTag <CR>
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote')  }
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 let g:deoplete#enable_at_startup = 1
 
 "Plug 'shougo/neocomplete.vim'
@@ -93,7 +93,7 @@ let g:scala_sort_across_groups=1
 let g:scala_first_party_namespaces=
   \ '\(controllers\|events\|json|\kafka\|models\|modules\|security\|services\)'
 
-Plug 'gre/play2vim'
+Plug 'gre/play2vim', { 'for': 'scala' }
 
 Plug 'scrooloose/syntastic'
 "set statusline+=%#warningmsg#
@@ -105,7 +105,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_error_symbol = '✗'
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 set completeopt-=preview
 nnoremap <Leader>c :SyntasticCheck<Enter>
 
