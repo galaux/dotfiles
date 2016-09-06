@@ -60,7 +60,7 @@ au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "bsdtar"
 
 let mapleader=","
 imap jj <Esc>
-cmap ww w !sudo tee % > /dev/null
+cmap w! w !sudo tee % > /dev/null
 
 map <F5> :!ctags -R --exclude=target --exclude=node_modules --exclude=public --exclude=assets
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
