@@ -8,14 +8,17 @@ URxvt*termName:         rxvt-256color
 !URxvt.scrollStyle:     rxvt
 URxvt.scrollBar:        false
 
-URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback
+URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback,font-size
 URxvt.url-launcher:     /usr/bin/chromium
 URxvt.matcher.button:   2
 
 ! extensions -> font-size
 ! https://github.com/majutsushi/urxvt-font-size
-!URxvt.keysym.C-Up:     perl:font-size:increase
-!URxvt.keysym.C-Down:   perl:font-size:decrease
+! AUR package urxvt-font-size-git
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
 
 URxvt.keysym.C-Delete:  perl:matcher:last
 URxvt.keysym.M-Delete:  perl:matcher:list
