@@ -58,12 +58,17 @@ set fillchars+=fold:┄
 " Arch Linux packages opened with bsdtar
 au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "bsdtar"
 
+set mouse-=a
+set clipboard+=unnamedplus
+
 let mapleader=","
 imap jj <Esc>
 cmap w! w !sudo tee % > /dev/null
 
 map <F5> :!ctags -R --exclude=target --exclude=node_modules --exclude=public --exclude=assets
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+"nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+let maplocalleader=" "
+nnoremap <localleader><space> :nohlsearch<CR>
 " Highlight word under cursor without jumping to next occurrence
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
