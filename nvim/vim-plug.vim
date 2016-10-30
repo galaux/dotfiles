@@ -38,7 +38,8 @@ let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 au FileType clojure let g:delimitMate_expand_cr = 0
 au FileType clojure let g:delimitMate_expand_space = 0
-au FileType vim let g:delimitMate_smart_quotes = 0
+au FileType vim let b:delimitMate_smart_quotes = 0
+let b:delimitMate_matchpairs = "(:),[:],{:},«:»"
 
 "Plug 'nathanaelkane/vim-indent-guides'
 "let g:indent_guides_auto_colors = 0
