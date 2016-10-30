@@ -96,6 +96,11 @@ let g:scala_first_party_namespaces=
 
 Plug 'gre/play2vim', { 'for': 'scala' }
 
+Plug 'ensime/ensime-vim', { 'for': 'scala,java' }
+"au FileType scala nnoremap <localleader>ed :EnDeclaration<CR>
+"au FileType scala nnoremap <localleader>edx :EnDeclarationSplit<CR>
+"au FileType scala nnoremap <localleader>edv :EnDeclarationSplit v<CR>
+
 Plug 'scrooloose/syntastic'
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
