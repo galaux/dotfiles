@@ -1,16 +1,8 @@
-. ~/.config/colors.sh
-eval $(dircolors ~/.config/.dir_colors)
-. ~/.config/less_colors.sh
-. ~/.config/grep_colors.sh
+. ~/.config/env.sh
 . ~/.config/aliases.sh
 [[ -e ~/.config/zshrc.local ]] && . ~/.config/zshrc.local
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# TODO put somewhere else
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-
-# ─────────────────────────────────────────────────────────────────────────────
 setopt prompt_subst #allow function calls in prompt
 #autoload -Uz cdr
 #autoload -U promptnl
@@ -109,6 +101,7 @@ function precmd() {
   fi
   unset _before
 }
+
 # ─────────────────────────────────────────────────────────────────────────────
 
 # append history list to the history file; this is the default but we make sure
@@ -181,7 +174,7 @@ compinit -C
 
 # Autocompletion with an arrow-key driven interface
 zstyle ':completion:*' menu select
-## case-insensitive (all),partial-word and then substring completion
+# case-insensitive (all),partial-word and then substring completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Variables
@@ -256,3 +249,8 @@ bindkey '\eOA' up-line-or-beginning-search
 bindkey '\e[A' up-line-or-beginning-search
 bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
+
+# Enable aws-cli completion
+autoload -Uz bashcompinit
+bashcompinit -i
+complete -C aws_completer aws
