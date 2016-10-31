@@ -86,8 +86,8 @@ nnoremap <Leader>/ :Ack!<Space>
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nmap <F4> :NERDTreeToggle<CR>
 
-"Plug 'majutsushi/tagbar'
-"nmap <F7> :TagbarToggle<CR>
+Plug 'majutsushi/tagbar'
+nmap <F7> :TagbarToggle<CR>
 
 "Plug 'rust-lang/rust.vim'
 
