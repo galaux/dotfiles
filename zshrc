@@ -26,7 +26,7 @@ root_user_display() {
 }
 
 regular_user_display() {
-  echo "@%F{red}$(hostname -s)%f"
+  echo "%F{white}%n%f"
 }
 
 host_display() {
