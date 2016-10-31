@@ -65,7 +65,7 @@ let mapleader=","
 imap jj <Esc>
 cmap w! w !sudo tee % > /dev/null
 
-map <F5> :!ctags -R --exclude=target --exclude=node_modules --exclude=public --exclude=assets
+map <F5> :!ctags -R --exclude=target
 "nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 let maplocalleader=" "
 nnoremap <localleader><space> :nohlsearch<CR>
