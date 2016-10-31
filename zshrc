@@ -1,7 +1,7 @@
 . ~/.config/env.sh
 . ~/.config/aliases.sh
 [[ -e ~/.config/zshrc.local ]] && . ~/.config/zshrc.local
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
 
 setopt prompt_subst #allow function calls in prompt
 #autoload -Uz cdr
