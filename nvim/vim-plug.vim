@@ -83,8 +83,8 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 Plug 'mileszs/ack.vim'
 nnoremap <Leader>/ :Ack!<Space>
 
-"Plug 'scrooloose/nerdtree'
-"nmap <F4> :NERDTreeToggle<CR>
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+nmap <F4> :NERDTreeToggle<CR>
 
 "Plug 'majutsushi/tagbar'
 "nmap <F7> :TagbarToggle<CR>
