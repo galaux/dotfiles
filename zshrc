@@ -30,7 +30,7 @@ regular_user_display() {
 }
 
 host_display() {
-  echo "@%F{white}%f$(hostname -s)%f"
+  echo "@%F{red}$(hostname -s)%f"
 }
 
 prompt_user_host_wrapper() {
