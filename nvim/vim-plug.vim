@@ -79,7 +79,9 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "Plug 'tpope/vim-fugitive'
+
 Plug 'mileszs/ack.vim'
+nnoremap <Leader>/ :Ack!<Space>
 
 "Plug 'scrooloose/nerdtree'
 "nmap <F4> :NERDTreeToggle<CR>

@@ -72,8 +72,6 @@ nnoremap <localleader><space> :nohlsearch<CR>
 " Highlight word under cursor without jumping to next occurrence
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-"nnoremap <Leader>f :Ack!<Space>
-
 "map <C-H> :execute "tabmove" tabpagenr() - 2<CR>
 "map <C-L> :execute "tabmove" tabpagenr() + 1<CR>
 
