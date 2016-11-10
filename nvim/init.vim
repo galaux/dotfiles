@@ -56,7 +56,7 @@ set fillchars+=vert:│
 set fillchars+=fold:┄
 
 " Arch Linux packages opened with bsdtar
-au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "bsdtar"
+au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "/usr/bin/bsdtar"
 
 set mouse-=a
 set clipboard+=unnamedplus
