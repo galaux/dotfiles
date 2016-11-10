@@ -178,7 +178,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Variables
-export EDITOR=vim
+export EDITOR=/usr/bin/nvim
 CDPATH=".:${HOME}"
 
 # Disable Ctrl+s
