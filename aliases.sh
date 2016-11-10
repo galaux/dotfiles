@@ -7,6 +7,7 @@ alias cpe='rsync -t --progress $@'
 alias ~make="inotifywait -m -r -e close_write --exclude '.*.sw[a-z]' src/ | while read line; do make; done"
 alias vim='/usr/bin/nvim'
 alias vimdiff='/usr/bin/nvim -d'
+alias svnd='svn diff | colordiff'
 
 showswap() {
   test -n $1 && count=$1
