@@ -206,7 +206,7 @@ workspace 10 output HDMI1
 exec nm-applet
 exec blueman-applet
 exec feh --bg-fill /var/lib/wallpaper.jpg
-exec dunst
+# exec dunst
 
 exec --no-startup-id i3-msg 'workspace 6; exec urxvt'
 #for_window [title="New Tab - Chromium"] move workspace 7
@@ -233,7 +233,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 8
 
 bindsym XF86Search exec ~/todo_screens.sh
 
-assign [class="Clementine"] 10
+# assign [class="Clementine"] 10
 
 # class                 border  backgr. text    indicator
 client.focused          #4d679a #4d679a #d0d0d0 #d0d0d0

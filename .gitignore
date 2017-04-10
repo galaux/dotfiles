@@ -17,6 +17,7 @@
 !dunst/dunstrc
 !git/config
 !grep_colors.sh
+!i3/config
 !i3pystatus.conf
 !i3status/config
 !lein_profiles.clj
