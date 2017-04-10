@@ -33,13 +33,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'fabi1cazenave/suckless.vim'
 Plug 'jamessan/vim-gnupg'
 
+Plug 'vim-scripts/deb.vim'
+
 Plug 'Raimondi/delimitMate'
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 au FileType clojure let g:delimitMate_expand_cr = 0
 au FileType clojure let g:delimitMate_expand_space = 0
-au FileType vim let b:delimitMate_smart_quotes = 0
-let b:delimitMate_matchpairs = "(:),[:],{:},«:»"
+"au FileType vim let b:delimitMate_smart_quotes = 0
+let b:delimitMate_matchpairs = "(:),[:],{:},<:>,«:»"
+"au FileType markdown let delimitMate_quotes = "_"
 
 "Plug 'nathanaelkane/vim-indent-guides'
 "let g:indent_guides_auto_colors = 0
@@ -55,6 +58,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_extensions = ['tag']
 map <C-i> :CtrlPTag <CR>
+map <C-b> :CtrlPBuffer <CR>
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -78,7 +82,13 @@ let g:deoplete#enable_at_startup = 1
 "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-rhubarb'
+
+Plug 'tpope/vim-fugitive'
+nnoremap <Leader>gs :Gstatus<Enter>
 
 Plug 'mileszs/ack.vim'
 nnoremap <Leader>/ :Ack!<Space>
@@ -98,40 +108,57 @@ let g:scala_first_party_namespaces=
 
 Plug 'gre/play2vim', { 'for': 'scala' }
 
-Plug 'ensime/ensime-vim', { 'for': 'scala,java' }
+"Plug 'ensime/ensime-vim', { 'for': 'scala,java' }
+Plug 'ensime/ensime-vim', { 'for': 'scala' }
 "au FileType scala nnoremap <localleader>ed :EnDeclaration<CR>
 "au FileType scala nnoremap <localleader>edx :EnDeclarationSplit<CR>
 "au FileType scala nnoremap <localleader>edv :EnDeclarationSplit v<CR>
 
-Plug 'scrooloose/syntastic'
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-set completeopt-=preview
-nnoremap <Leader>c :SyntasticCheck<Enter>
+"Plug 'scrooloose/syntastic'
+""set statusline+=%#warningmsg#
+""set statusline+=%{SyntasticStatuslineFlag()}
+""set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_warning_symbol = '⚠'
+"let g:syntastic_error_symbol = '✗'
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"set completeopt-=preview
+"nnoremap <Leader>c :SyntasticCheck<Enter>
 
-" Required by vim-cljfmt and vim-eastwood
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Required by vim-fireplace to fint `lein repl` connection
-Plug 'tpope/vim-salve', { 'for': 'clojure' }
+"" Required by vim-cljfmt and vim-eastwood
+"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+"" Required by vim-fireplace to fint `lein repl` connection
+"Plug 'tpope/vim-salve', { 'for': 'clojure' }
+"" Code formatting, requires vim-fireplace
+"Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
+"let g:clj_fmt_autosave = 0
+"nnoremap <Leader>= :Cljfmt<Enter>
+
+Plug 'tpope/vim-salve', { 'for': 'clojure' } | Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Code formatting, requires vim-fireplace
-Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
-let g:clj_fmt_autosave = 0
-nnoremap <Leader>= :Cljfmt<Enter>
+
+" Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
+" let g:clj_fmt_autosave = 0
+" nnoremap <Leader>= :Cljfmt<Enter>
 
 " Namespace generation, requires vim-fireplace
 Plug 'guns/vim-slamhound', { 'for': 'clojure' }
 "nnoremap <LocalLeader>n :Slamhound<CR>
 
 " Clojure lint tool, requires syntastic and vim-fireplace
-Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
+"Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
+
+Plug 'neovim/node-host' | Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
+" let g:parinfer_preview_cursor_scope = 1
+
+"Plug 'junegunn/rainbow_parentheses.vim'
+"let g:rainbow#max_level = 16
+"let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+"" List of colors that you do not want. ANSI code or #RRGGBB
+"let g:rainbow#blacklist = [233, 234]
 
 " Add plugins to &runtimepath
 call plug#end()

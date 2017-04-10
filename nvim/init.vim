@@ -59,16 +59,30 @@ set fillchars+=fold:┄
 au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "/usr/bin/bsdtar"
 
 set mouse-=a
-set clipboard+=unnamedplus
+" y, d and p interact with the X CLIPBOARD rather than Vim's unnamed registers
+set clipboard=unnamedplus
 
-let mapleader=","
 imap jj <Esc>
 cmap w! w !sudo tee % > /dev/null
 
-map <F5> :!ctags -R --exclude=target
+let mapleader=" "
+"let maplocalleader=" "
+nnoremap <leader><space> :nohlsearch<CR>
 "nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-let maplocalleader=" "
-nnoremap <localleader><space> :nohlsearch<CR>
+nnoremap <Leader>fap =ap<Space>
+nnoremap <Leader>fa( =a(<Space>
+nnoremap <Leader>fa[ =a[<Space>
+nnoremap <Leader>fa{ =a{<Space>
+
+vnoremap <Leader>e :Eval<CR>
+noremap <Leader>e :%Eval<CR>
+
+map <F5> :!ctags -R
+      \ --exclude=app/assets
+      \ --exclude=public
+      \ --exclude=target
+      \ --exclude=vendor
+
 " Highlight word under cursor without jumping to next occurrence
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
@@ -79,6 +93,7 @@ nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 au BufNewFile,BufRead *.edn set filetype=clojure
 au BufNewFile,BufRead *.avsc set filetype=json
+au BufNewFile,BufRead *.sbt set filetype=scala
 
 au FileType json setlocal equalprg=python\ -m\ json.tool
 
@@ -86,3 +101,11 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " https://github.com/neovim/neovim/issues/2048
 nnoremap <silent>    <M-BS>  :6 wincmd ><CR>
+
+" Enable fenced code block syntax highlighting in markdown documents
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
+
+nnoremap gz :!zeal "<cword>"&<CR><CR>
+
+let g:netrw_liststyle=3 " tree style listing
