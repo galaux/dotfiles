@@ -11,9 +11,9 @@ autoload -U colors && colors
 
 prompt_prev_cmd() {
   if [[ $? == 0 ]]; then
-    echo ""
+    echo "\n"
   else
-    echo "%F{red}✗%f"
+    echo "%F{red}✗%f\n"
   fi
 }
 
@@ -83,9 +83,9 @@ prompt_elapsed() {
   fi
 }
 
-RPROMPT=$'$(prompt_prev_cmd)$(prompt_elapsed)'
+RPROMPT=$'$(prompt_elapsed)'
 
-PROMPT=$'
+PROMPT=$'$(prompt_prev_cmd)
 $(prompt_pwd_wrapper) $(prompt_user_host_wrapper)$(vcs_info_wrapper)
 ❯ '
 
