@@ -15,3 +15,5 @@ showswap() {
     awk '/VmSwap|Name/{printf $2 " " $3}END{ print ""}' ${file}
   done | sort -k 2 -n -r | head -${count}
 }
+
+source ~/.config.d/aliases.sh 2> /dev/null
