@@ -1,2 +1,4 @@
-xrandr --output HDMI1 --auto --right-of eDP1
 export XDG_CONFIG_HOME="${HOME}/.config"
+export SILENT_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+source ~/.config.d/xprofile 2> /dev/null
