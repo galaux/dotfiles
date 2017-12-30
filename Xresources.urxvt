@@ -1,7 +1,7 @@
 URxvt*font:             xft:DejaVu Sans Mono:pixelsize=12
 URxvt*boldFont:         xft:DejaVu Sans Mono:bold:pixelsize=12
 
-URxvt*letterSpace:      -2
+URxvt*letterSpace:      -1
 
 URxvt*termName:         rxvt-256color
 

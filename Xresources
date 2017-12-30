@@ -5,7 +5,7 @@
 *.foreground:           S_white_light
 *.background:           S_black
 !*.cursorColor:          #S_white_light
-*fading:                15
+*fading:                30
 !*fadeColor:             #192033
 !*pointerColorBackground: S_green
 !*pointerColorForeground: S_cyan
