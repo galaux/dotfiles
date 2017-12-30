@@ -6,6 +6,7 @@
 	co = checkout
 	st = status
 	lg = log --graph --pretty=format:' %C(red)%h %C(green)%ad %C(blue)%an %C(reset)%s%C(yellow)%d' --date=short
+	cane = commit --amend --no-edit
 
 [push]
 	default = simple
