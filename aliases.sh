@@ -8,6 +8,8 @@ alias ~make="inotifywait -m -r -e close_write --exclude '.*.sw[a-z]' src/ | whil
 alias vim='/usr/bin/nvim'
 alias vimdiff='/usr/bin/nvim -d'
 alias svnd='svn diff | colordiff'
+alias ip='ip -c'
+alias g='git'
 
 showswap() {
   test -n $1 && count=$1
