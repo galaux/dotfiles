@@ -30,7 +30,11 @@ call plug#begin('~/.vim/plugged')
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
 
-Plug 'fabi1cazenave/suckless.vim'
+" Plug 'fabi1cazenave/suckless.vim'
+Plug 'mkitt/tabline.vim'
+Plug 'pmalek/toogle-maximize.vim'
+map <silent> <A-f> :call ToggleMaximizeCurrentWindow()<CR>
+
 Plug 'jamessan/vim-gnupg'
 
 Plug 'vim-scripts/deb.vim'

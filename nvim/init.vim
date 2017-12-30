@@ -109,3 +109,37 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 nnoremap gz :!zeal "<cword>"&<CR><CR>
 
 let g:netrw_liststyle=3 " tree style listing
+
+
+
+" Moving among windows
+nnoremap <silent> <A-h> :wincmd h<CR>
+nnoremap <silent> <A-j> :wincmd j<CR>
+nnoremap <silent> <A-k> :wincmd k<CR>
+nnoremap <silent> <A-l> :wincmd l<CR>
+
+" Moving among tabs
+nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <C-h> :tabprevious<CR>
+
+nnoremap <silent> <A-1> :tabnext 1<CR>
+nnoremap <silent> <A-2> :tabnext 2<CR>
+nnoremap <silent> <A-2> :tabnext 2<CR>
+nnoremap <silent> <A-3> :tabnext 3<CR>
+nnoremap <silent> <A-4> :tabnext 4<CR>
+nnoremap <silent> <A-5> :tabnext 5<CR>
+nnoremap <silent> <A-6> :tabnext 6<CR>
+nnoremap <silent> <A-8> :tabnext 8<CR>
+nnoremap <silent> <A-9> :tablast<CR>
+
+" set winminwidth=0
+
+nnoremap <silent> <A-H> :vertical resize -5<CR>
+nnoremap <silent> <A-J> :resize -5<CR>
+nnoremap <silent> <A-K> :resize +5<CR>
+nnoremap <silent> <A-L> :vertical resize +5<CR>
+
+nnoremap <silent> <A-=> <C-W>=
+
+nnoremap <silent> <C-H> :tabmove -1<CR>
+nnoremap <silent> <C-L> :tabmove +1<CR>
