@@ -205,7 +205,6 @@ workspace 10 output DP1-1
 exec nm-applet
 exec blueman-applet
 exec feh --bg-fill /usr/share/backgrounds/wallpaper.jpg
-# exec dunst
 exec /usr/bin/light-locker
 
 exec --no-startup-id i3-msg 'workspace 6; exec /usr/bin/urxvt'
@@ -217,7 +216,6 @@ exec --no-startup-id i3-msg 'workspace 7; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/nautilus'
 exec xbindkeys
 
-# bindsym $mod+Shift+w exec i3lock -c 425462
 bindsym $mod+Shift+w exec /usr/bin/light-locker-command --lock
 # $(pactl list short sinks | cut -f1)
 bindsym XF86AudioRaiseVolume  exec pactl set-sink-volume @DEFAULT_SINK@ +3%
