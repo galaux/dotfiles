@@ -1,4 +1,5 @@
 alias l='ls -Ahl --color=auto'
+alias .='cd .'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='grep --color'
