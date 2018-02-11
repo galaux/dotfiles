@@ -30,6 +30,8 @@ call plug#begin('~/.vim/plugged')
 "" Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
 
+Plug 'tpope/vim-unimpaired'
+
 " Plug 'fabi1cazenave/suckless.vim'
 Plug 'mkitt/tabline.vim'
 Plug 'pmalek/toogle-maximize.vim'
