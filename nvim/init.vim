@@ -97,6 +97,8 @@ au BufNewFile,BufRead *.sbt set filetype=scala
 
 au FileType json setlocal equalprg=python\ -m\ json.tool
 
+autocmd FileType go setlocal expandtab! tabstop=2 listchars+=tab:\ \ 
+
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " https://github.com/neovim/neovim/issues/2048
@@ -112,13 +114,13 @@ let g:netrw_liststyle=3 " tree style listing
 
 
 
-" Moving among windows
+" Move among windows
 nnoremap <silent> <A-h> :wincmd h<CR>
 nnoremap <silent> <A-j> :wincmd j<CR>
 nnoremap <silent> <A-k> :wincmd k<CR>
 nnoremap <silent> <A-l> :wincmd l<CR>
 
-" Moving among tabs
+" Move among tabs
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 
@@ -134,12 +136,19 @@ nnoremap <silent> <A-9> :tablast<CR>
 
 " set winminwidth=0
 
-nnoremap <silent> <A-H> :vertical resize -5<CR>
-nnoremap <silent> <A-J> :resize -5<CR>
-nnoremap <silent> <A-K> :resize +5<CR>
-nnoremap <silent> <A-L> :vertical resize +5<CR>
+" Resize splits
+nnoremap <silent> <C-A-h> :vertical resize -5<CR>
+nnoremap <silent> <C-A-j> :resize -5<CR>
+nnoremap <silent> <C-A-k> :resize +5<CR>
+nnoremap <silent> <C-A-l> :vertical resize +5<CR>
 
 nnoremap <silent> <A-=> <C-W>=
 
-nnoremap <silent> <C-H> :tabmove -1<CR>
-nnoremap <silent> <C-L> :tabmove +1<CR>
+" nnoremap <silent> <C-H> :tabmove -1<CR>
+" nnoremap <silent> <C-L> :tabmove +1<CR>
+
+" Move splits
+nnoremap <silent> <A-H> <C-W>H
+nnoremap <silent> <A-J> <C-W>J
+nnoremap <silent> <A-K> <C-W>K
+nnoremap <silent> <A-L> <C-W>L
