@@ -166,5 +166,7 @@ Plug 'neovim/node-host' | Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 "" List of colors that you do not want. ANSI code or #RRGGBB
 "let g:rainbow#blacklist = [233, 234]
 
+Plug 'gurpreetatwal/vim-avro'
+
 " Add plugins to &runtimepath
 call plug#end()
