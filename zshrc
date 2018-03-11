@@ -79,9 +79,20 @@ _before=0
 _elapsed=-1
 ELAPSED_THRESHOLD=3
 
+
+# echo $(date -d '2018-03-31' +%s)
+TARGET_SECONDS=1522447200
+# echo $((24*60*60))
+SEC_PER_DAY=86400
+
 prompt_elapsed() {
+  now_seconds=$(date +%s)
+  diff=$((TARGET_SECONDS - now_seconds))
+  days_label="[$((diff / SEC_PER_DAY + 1))j]"
   if [[ $_elapsed -gt $ELAPSED_THRESHOLD ]]; then
-    echo " $(date -u -d @${_elapsed} +%T)"
+    echo " $(date -u -d @${_elapsed} +%T) – ${days_label}"
+  else
+    echo " ${days_label}"
   fi
 }
 
