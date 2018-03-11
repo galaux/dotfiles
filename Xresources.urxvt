@@ -17,7 +17,7 @@ URxvt*scrollTtyKeypress:    true
 
 !URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback,font-size,vim-insert
 URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback,font-size,keyboard-select
-URxvt.url-launcher:     /usr/bin/chromium
+URxvt.url-launcher:     /usr/bin/firefox
 URxvt.matcher.button:   2
 
 URxvt.matcher.rend.0: Uline fg6
