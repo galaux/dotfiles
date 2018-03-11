@@ -56,9 +56,17 @@ set fillchars+=vert:│
 set fillchars+=fold:┄
 
 " Arch Linux packages opened with bsdtar
-au BufReadCmd *.pkg.tar.xz let g:tar_cmd = "/usr/bin/bsdtar"
+autocmd BufReadCmd *.pkg.tar.xz let g:tar_cmd = "/usr/bin/bsdtar"
 
-set mouse-=a
+autocmd BufNewFile,BufRead *.edn setlocal filetype=clojure
+autocmd BufNewFile,BufRead *.sbt setlocal filetype=scala
+
+autocmd FileType go setlocal noexpandtab tabstop=2 listchars+=tab:\ \ 
+autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+autocmd FileType markdown setlocal wrap
+autocmd FileType python setlocal noexpandtab
+
+set mouse-=a " Works nicely with urxvt-vim-insert and urxvt-vtwheel
 " y, d and p interact with the X CLIPBOARD rather than Vim's unnamed registers
 set clipboard=unnamedplus
 
@@ -79,6 +87,7 @@ noremap <Leader>e :%Eval<CR>
 
 map <F5> :!ctags -R
       \ --exclude=app/assets
+      \ --exclude=node_modules
       \ --exclude=public
       \ --exclude=target
       \ --exclude=vendor
@@ -86,18 +95,7 @@ map <F5> :!ctags -R
 " Highlight word under cursor without jumping to next occurrence
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-"map <C-H> :execute "tabmove" tabpagenr() - 2<CR>
-"map <C-L> :execute "tabmove" tabpagenr() + 1<CR>
-
 "let g:clojure_align_multiline_strings = 1
-
-au BufNewFile,BufRead *.edn set filetype=clojure
-au BufNewFile,BufRead *.avsc set filetype=json
-au BufNewFile,BufRead *.sbt set filetype=scala
-
-au FileType json setlocal equalprg=python\ -m\ json.tool
-
-autocmd FileType go setlocal expandtab! tabstop=2 listchars+=tab:\ \ 
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -107,12 +105,7 @@ nnoremap <silent>    <M-BS>  :6 wincmd ><CR>
 " Enable fenced code block syntax highlighting in markdown documents
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
-
-nnoremap gz :!zeal "<cword>"&<CR><CR>
-
 let g:netrw_liststyle=3 " tree style listing
-
-
 
 " Move among windows
 nnoremap <silent> <A-h> :wincmd h<CR>
@@ -134,21 +127,20 @@ nnoremap <silent> <A-6> :tabnext 6<CR>
 nnoremap <silent> <A-8> :tabnext 8<CR>
 nnoremap <silent> <A-9> :tablast<CR>
 
-" set winminwidth=0
-
-" Resize splits
+" Resize windows
 nnoremap <silent> <C-A-h> :vertical resize -5<CR>
 nnoremap <silent> <C-A-j> :resize -5<CR>
 nnoremap <silent> <C-A-k> :resize +5<CR>
 nnoremap <silent> <C-A-l> :vertical resize +5<CR>
 
-nnoremap <silent> <A-=> <C-W>=
+nnoremap <silent> <A-=> :wincmd =<CR>
 
-" nnoremap <silent> <C-H> :tabmove -1<CR>
-" nnoremap <silent> <C-L> :tabmove +1<CR>
+" nnoremap <silent> <C-S-h> :tabmove -1<CR>
+" nnoremap <silent> <C-S-l> :tabmove +1<CR>
 
-" Move splits
-nnoremap <silent> <A-H> <C-W>H
-nnoremap <silent> <A-J> <C-W>J
-nnoremap <silent> <A-K> <C-W>K
-nnoremap <silent> <A-L> <C-W>L
+" Move windows
+nnoremap <silent> <A-H> :wincmd H<CR>
+nnoremap <silent> <A-J> :wincmd J<CR>
+nnoremap <silent> <A-K> :wincmd K<CR>
+nnoremap <silent> <A-L> :wincmd L<CR>
+
