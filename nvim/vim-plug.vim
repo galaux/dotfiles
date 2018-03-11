@@ -34,8 +34,13 @@ Plug 'tpope/vim-unimpaired'
 
 " Plug 'fabi1cazenave/suckless.vim'
 Plug 'mkitt/tabline.vim'
+
 Plug 'pmalek/toogle-maximize.vim'
 map <silent> <A-f> :call ToggleMaximizeCurrentWindow()<CR>
+
+" Plug 'szw/vim-maximizer'
+" let g:maximizer_set_default_mapping = 1
+" let g:maximizer_default_mapping_key = '<A-f>'
 
 Plug 'jamessan/vim-gnupg'
 
@@ -98,6 +103,7 @@ nnoremap <Leader>gs :Gstatus<Enter>
 
 Plug 'mileszs/ack.vim'
 nnoremap <Leader>/ :Ack!<Space>
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nmap <F4> :NERDTreeToggle<CR>
@@ -154,11 +160,15 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' } | Plug 'tpope/vim-fireplace', { 'fo
 Plug 'guns/vim-slamhound', { 'for': 'clojure' }
 "nnoremap <LocalLeader>n :Slamhound<CR>
 
+" Plug 'clojure-vim/acid.nvim'
+
 " Clojure lint tool, requires syntastic and vim-fireplace
 "Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
-Plug 'neovim/node-host' | Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
+" Plug 'neovim/node-host' | Plug 'clojure-vim/nvim-parinfer.js', { 'for': 'clojure' }
 " let g:parinfer_preview_cursor_scope = 1
+" nnoremap <Leader>,o :ParinferOff<Enter>
+" nnoremap <Leader>,t :ParinferToggle<Enter>
 
 "Plug 'junegunn/rainbow_parentheses.vim'
 "let g:rainbow#max_level = 16
@@ -167,6 +177,8 @@ Plug 'neovim/node-host' | Plug 'snoe/nvim-parinfer.js', { 'for': 'clojure' }
 "let g:rainbow#blacklist = [233, 234]
 
 Plug 'gurpreetatwal/vim-avro'
+
+Plug 'nelstrom/vim-markdown-folding'
 
 " Add plugins to &runtimepath
 call plug#end()
