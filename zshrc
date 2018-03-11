@@ -1,5 +1,7 @@
 . ~/.config/env.sh
 . ~/.config/aliases.sh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 [[ -e ~/.config/zshrc.local ]] && . ~/.config/zshrc.local
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
