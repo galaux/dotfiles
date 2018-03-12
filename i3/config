@@ -204,10 +204,14 @@ workspace 10 output HDMI1
 # workspace  9 output DP1-1
 # workspace 10 output DP1-1
 
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager
+
+exec --no-startup-id /usr/bin/gnome-screensaver
+
 exec nm-applet
 exec blueman-applet
 exec feh --bg-fill /usr/share/backgrounds/wallpaper.jpg
-exec /usr/bin/light-locker
 
 exec --no-startup-id i3-msg 'workspace 6; exec /usr/bin/urxvt'
 #for_window [title="New Tab - Chromium"] move workspace 7
@@ -218,8 +222,7 @@ exec --no-startup-id i3-msg 'workspace 7; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/nautilus'
 exec xbindkeys
 
-# bindsym $mod+Shift+w exec i3lock -c 425462
-bindsym $mod+Shift+w exec /usr/bin/light-locker-command --lock
+bindsym $mod+Shift+w exec /usr/bin/dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 # $(pactl list short sinks | cut -f1)
 bindsym XF86AudioRaiseVolume  exec pactl set-sink-volume @DEFAULT_SINK@ +3%
 bindsym XF86AudioLowerVolume  exec pactl set-sink-volume @DEFAULT_SINK@ -3%
