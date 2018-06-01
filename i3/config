@@ -249,8 +249,10 @@ client.focused_inactive #313333 #313333 #ffffff #484e50
 client.unfocused        #2c2e2f #2c2e2f #888888 #292d2e
 client.urgent           #A62A3E #A62A3E #ffffff #900000
 
-new_window 1pixel
+default_border pixel
 
-#
-#bindsym $mod+p exec xdotool click 2
-#bindsym $mod+p exec xdotool key "Shift+Insert"
+# i3-gap specific config
+gaps inner 7
+gaps outer 0
+smart_gaps on
+smart_borders on
