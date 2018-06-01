@@ -1,3 +1,4 @@
+let mapleader=" "
 source ~/.config/nvim/vim-plug.vim
 
 set splitbelow
@@ -73,7 +74,6 @@ set clipboard=unnamedplus
 imap jj <Esc>
 cmap w! w !sudo tee % > /dev/null
 
-let mapleader=" "
 "let maplocalleader=" "
 nnoremap <leader><space> :nohlsearch<CR>
 "nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
