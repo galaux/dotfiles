@@ -103,6 +103,8 @@ nnoremap <Leader>gs :Gstatus<Enter>
 
 Plug 'mileszs/ack.vim'
 nnoremap <Leader>/ :Ack!<Space>
+nnoremap <Leader>? :Ack<CR>
+let g:ackhighlight = 1
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
