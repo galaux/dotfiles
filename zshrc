@@ -183,6 +183,8 @@ setopt unset
 
 ## Completions
 autoload -U compinit
+# http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Use-of-compinit
+# To regenerate the completion dump file, remove the -C
 compinit -C
 
 # Autocompletion with an arrow-key driven interface
