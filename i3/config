@@ -68,6 +68,9 @@ bindsym $mod+o split h
 # split in vertical orientation
 bindsym $mod+v split v
 
+# Set initial split orientation as horizontal
+exec_always --no-startup-id /usr/bin/i3-msg split h
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
