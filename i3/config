@@ -24,8 +24,9 @@ font pango:DejaVu Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/urxvt
-bindsym $mod+BackSpace exec /usr/bin/st
+bindsym $mod+Return exec --no-startup-id /usr/bin/urxvt
+bindsym $mod+BackSpace exec --no-startup-id "/usr/bin/st"
+# bindsym $mod+BackSpace exec "/usr/bin/st -e /usr/bin/tmux"
 
 # kill focused window
 bindsym $mod+Shift+q kill
