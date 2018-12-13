@@ -52,6 +52,8 @@
   :ensure t
   :pin melpa-stable)
 
+(setq ensime-startup-notification nil)
+
 ;; Projectile configuration
 (projectile-mode +1)
 ;(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
