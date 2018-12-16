@@ -67,3 +67,18 @@
              (bind-key "<f3>" 'highlight-symbol-next)
              (bind-key "S-<f3>" 'highlight-symbol-prev)
              (bind-key "M-<f3>" 'highlight-symbol-query-replace))
+
+(use-package company
+  :diminish company-mode
+  :commands company-mode
+  :init
+  (setq
+   company-dabbrev-ignore-case nil
+   company-dabbrev-code-ignore-case nil
+   company-dabbrev-downcase nil
+   company-idle-delay 0
+   company-minimum-prefix-length 4)
+  :config
+  ;; disables TAB in company-mode, freeing it for yasnippet
+  (define-key company-active-map [tab] nil)
+  (define-key company-active-map (kbd "TAB") nil))
