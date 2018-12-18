@@ -3,10 +3,8 @@
 (setq
  inhibit-startup-screen t
  create-lockfiles nil
- make-backup-files nil
  column-number-mode t
  scroll-error-top-bottom t
- show-paren-delay 0.5
  use-package-always-ensure t
  sentence-end-double-space nil)
 
@@ -16,8 +14,11 @@
  tab-width 4
  c-basic-offset 4)
 
-;; modes
-(electric-indent-mode 0)
+;; Unset "suspend Emacs"
+(global-unset-key (kbd "C-z"))
+
+;; Enables s-arrows to move point to corresponding pane
+(windmove-default-keybindings)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -26,6 +27,17 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 90 :width normal)))))
 
+(electric-pair-mode 1)
+(setq electric-pair-pairs
+  '(
+    (?\" . ?\")
+    (?\' . ?\')
+    (?\« . ?\»)
+    ))
+
+;; turn on highlight matching brackets when cursor is on one
+(setq show-paren-delay 0)
+(show-paren-mode 1)
 
 (require 'package)
 (setq
