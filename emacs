@@ -52,7 +52,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (highlight-symbol ensime use-package projectile))))
+ '(package-selected-packages
+   (quote
+    (smartparens expand-region highlight-symbol ensime use-package helm-projectile projectile))))
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -66,19 +68,19 @@
 
 (setq ensime-startup-notification nil)
 
-;; Projectile configuration
-(use-package projectile)
-(projectile-mode +1)
-;(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(setq projectile-project-search-path '("~/Riaktr/sources/snd-batches"))
+(use-package projectile
+  :demand
+  :init   (setq projectile-use-git-grep t)
+  :config (projectile-global-mode t)
+  :bind   (("C-c p" . helm-projectile)))
 
 (use-package highlight-symbol
-             :init
-             (bind-key "C-<f3>" 'highlight-symbol)
-             (bind-key "<f3>" 'highlight-symbol-next)
-             (bind-key "S-<f3>" 'highlight-symbol-prev)
-             (bind-key "M-<f3>" 'highlight-symbol-query-replace))
+             :diminish highlight-symbol-mode
+             :commands highlight-symbol
+             :bind ("C-<f3>" . 'highlight-symbol)
+                   ("<f3>" . 'highlight-symbol-next)
+                   ("S-<f3>" . 'highlight-symbol-prev)
+                   ("M-<f3>" . 'highlight-symbol-query-replace))
 
 (use-package company
   :diminish company-mode
@@ -94,3 +96,8 @@
   ;; disables TAB in company-mode, freeing it for yasnippet
   (define-key company-active-map [tab] nil)
   (define-key company-active-map (kbd "TAB") nil))
+
+(use-package expand-region
+  :commands 'er/expand-region
+  :bind ("C-=" . er/expand-region))
+
