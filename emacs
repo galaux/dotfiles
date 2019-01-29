@@ -1,12 +1,15 @@
 ;; Some defaults from http://ensime.github.io/editors/emacs/learning/
-;; global variables
+
+;; global variables (watch-out, these might be overridden by package `better-defaults`)
 (setq
  inhibit-startup-screen t
  create-lockfiles nil
  column-number-mode t
  scroll-error-top-bottom t
  use-package-always-ensure t
- sentence-end-double-space nil)
+ sentence-end-double-space nil
+ mouse-yank-at-point t
+ )
 
 ;; buffer local variables
 (setq-default
@@ -54,7 +57,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (smartparens expand-region highlight-symbol ensime use-package helm-projectile projectile))))
+    (tagedit smex ido-completing-read+ cider clojure-mode-extra-font-locking paredit clojure-mode better-defaults company smartparens expand-region highlight-symbol use-package projectile))))
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -62,17 +65,20 @@
   (package-install 'use-package))
 (require 'use-package)
 
-(use-package ensime
-  :ensure t
-  :pin melpa-stable)
+;(use-package ensime
+;  :ensure t
+;  :pin melpa-stable)
 
-(setq ensime-startup-notification nil)
+;(setq ensime-startup-notification nil)
 
+;; Remember that this is just the Projectile suffix.
+;; To use Projectile for the first time, add a known project then use
+;; "C-c p p" to open a known project
 (use-package projectile
   :demand
   :init   (setq projectile-use-git-grep t)
   :config (projectile-global-mode t)
-  :bind   (("C-c p" . helm-projectile)))
+  :bind-keymap   ("C-c p" . projectile-command-map))
 
 (use-package highlight-symbol
              :diminish highlight-symbol-mode
@@ -101,3 +107,5 @@
   :commands 'er/expand-region
   :bind ("C-=" . er/expand-region))
 
+(use-package smex
+  :bind ("M-x" . 'smex))
