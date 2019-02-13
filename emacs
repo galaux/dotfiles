@@ -1,15 +1,13 @@
 ;; Some defaults from http://ensime.github.io/editors/emacs/learning/
 
-;; global variables (watch-out, these might be overridden by package `better-defaults`)
-(setq
- inhibit-startup-screen t
- create-lockfiles nil
- column-number-mode t
- scroll-error-top-bottom t
- use-package-always-ensure t
- sentence-end-double-space nil
- mouse-yank-at-point t
- )
+;; global variables (might be overridden by package `better-defaults`)
+(setq inhibit-startup-screen t
+      create-lockfiles nil
+      column-number-mode t
+      scroll-error-top-bottom t
+      use-package-always-ensure t
+      sentence-end-double-space nil
+      mouse-yank-at-point t)
 
 ;; buffer local variables
 (setq-default
@@ -17,29 +15,40 @@
  tab-width 4
  c-basic-offset 4)
 
+;; Changes all yes/no questions to y/n type
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Unset "suspend Emacs"
 (global-unset-key (kbd "C-z"))
 
 ;; Enables s-arrows to move point to corresponding pane
 (windmove-default-keybindings)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 90 :width normal)))))
+;; Emacs can automatically create backup files. This tells Emacs to
+;; put all backups in ~/.emacs.d/backups. More info:
+;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                               "backups"))))
 
-(electric-pair-mode 1)
-(setq electric-pair-pairs
-  '(
-    (?\" . ?\")
-    (?\' . ?\')
-    (?\« . ?\»)
-    ))
+;(electric-pair-mode 1)
+;(setq electric-pair-pairs
+;  '(
+;    (?\" . ?\")
+;    (?\' . ?\')
+;    (?\« . ?\»)
+;    ))
+
+(setq electric-indent-mode nil)
+
+;; comments
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+(global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
 ;; turn on highlight matching brackets when cursor is on one
-(setq show-paren-delay 0)
+;(setq show-paren-delay 0)
 (show-paren-mode 1)
 
 (require 'package)
@@ -57,7 +66,9 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tagedit smex ido-completing-read+ cider clojure-mode-extra-font-locking paredit clojure-mode better-defaults company smartparens expand-region highlight-symbol use-package projectile))))
+    (avy which-key solarized-theme zenburn-theme snazzy-theme parinfer markdown-mode tagedit smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode better-defaults company smartparens expand-region highlight-symbol use-package projectile)))
+ '(which-key-mode t))
+;clj-refactor 
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -79,6 +90,24 @@
   :init   (setq projectile-use-git-grep t)
   :config (projectile-global-mode t)
   :bind-keymap   ("C-c p" . projectile-command-map))
+
+(use-package parinfer
+  :ensure t
+  :bind
+  (("C-," . parinfer-toggle-mode))
+  :init
+  (progn
+    (setq parinfer-extensions
+          '(defaults       ; should be included.
+             pretty-parens  ; different paren styles for different modes.
+             paredit        ; Introduce some paredit commands.
+             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
+             smart-yank))   ; Yank behavior depend on mode.
+    (add-hook 'clojure-mode-hook #'parinfer-mode)
+    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
+    (add-hook 'scheme-mode-hook #'parinfer-mode)
+    (add-hook 'lisp-mode-hook #'parinfer-mode)))
 
 (use-package highlight-symbol
              :diminish highlight-symbol-mode
@@ -103,9 +132,45 @@
   (define-key company-active-map [tab] nil)
   (define-key company-active-map (kbd "TAB") nil))
 
+(add-hook 'after-init-hook 'global-company-mode)
+
 (use-package expand-region
   :commands 'er/expand-region
   :bind ("C-=" . er/expand-region))
 
 (use-package smex
   :bind ("M-x" . 'smex))
+
+(add-to-list 'load-path "~/.emacs.d/customizations")
+(load "ui.el")
+
+;; enable paredit in your REPL
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 90 :width normal)))))
+
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (add-to-list 'load-path "~/.emacs.d/themes")
+(load-theme 'base16-railscasts t)
+
+(which-key-mode)
+
+(use-package avy
+  :bind ("C-M-;" . 'avy-goto-char-2))
+
+
+;(require 'clj-refactor)
+;
+;(defun my-clojure-mode-hook ()
+;    (clj-refactor-mode 1)
+;    (yas-minor-mode 1) ; for adding require/use/import statements
+;    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+;    (cljr-add-keybindings-with-prefix "C-c C-m"))
+;
+;(setq cljr-warn-on-eval nil)
+;
+;(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
