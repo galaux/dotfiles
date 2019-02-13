@@ -66,7 +66,31 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (avy which-key solarized-theme zenburn-theme snazzy-theme parinfer markdown-mode tagedit smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode better-defaults company smartparens expand-region highlight-symbol use-package projectile)))
+    (avy
+      ;; DONE
+      which-key
+      clojure-mode-extra-font-locking
+      clojure-mode
+      markdown-mode
+      tagedit
+      smex
+      cider
+      company
+      ;; SHOULD I?
+      ido-completing-read+
+      ;; NOPE
+      solarized-theme
+      zenburn-theme
+      snazzy-theme
+      parinfer
+      better-defaults
+      ;; TODO
+      smartparens
+      expand-region
+      highlight-symbol
+      use-package
+      projectile
+      )))
  '(which-key-mode t))
 ;clj-refactor 
 
@@ -75,6 +99,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+
+(which-key-mode)
 
 ;(use-package ensime
 ;  :ensure t
@@ -144,33 +170,18 @@
 (add-to-list 'load-path "~/.emacs.d/customizations")
 (load "ui.el")
 
-;; enable paredit in your REPL
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 90 :width normal)))))
-
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;; (add-to-list 'load-path "~/.emacs.d/themes")
-(load-theme 'base16-railscasts t)
-
-(which-key-mode)
-
 (use-package avy
   :bind ("C-M-;" . 'avy-goto-char-2))
 
 
-;(require 'clj-refactor)
-;
-;(defun my-clojure-mode-hook ()
-;    (clj-refactor-mode 1)
-;    (yas-minor-mode 1) ; for adding require/use/import statements
-;    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-;    (cljr-add-keybindings-with-prefix "C-c C-m"))
-;
-;(setq cljr-warn-on-eval nil)
-;
-;(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
+(require 'clj-refactor)
+
+(defun my-clojure-mode-hook ()
+    (clj-refactor-mode 1)
+    (yas-minor-mode 1) ; for adding require/use/import statements
+    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+    (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(setq cljr-warn-on-eval nil)
+
+(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
