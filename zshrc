@@ -215,47 +215,38 @@ setopt pushdignoredups
 setopt pushdminus
 
 set -o emacs
-# Vim-style word movement: Alt+[w|b]
-#bindkey "\ew" forward-word
-#bindkey "\eb" backward-word
-#
-#bindkey "\eh" backward-char
-#bindkey "\el" forward-char
-#
-## Vim-style home/end: Alt+[h|l]
-#bindkey "\ei" beginning-of-line
-#bindkey "\ea" end-of-line
-#
-## Alt+r/s instead of Ctrl+r/s
-##bindkey "\er" history-incremental-search-backward
-##bindkey "\es" history-incremental-search-forward
-#
-#bindkey "\ed" backward-kill-word
-#bindkey "\ep" yank
-#
-## Vim-style history search: Alt+[j|k]
-#bindkey "\ek" up-line-or-search
-#bindkey "\ej" down-line-or-search
-#
-#bindkey "\e." insert-last-word
-#
-#bindkey '^R' history-incremental-search-backward
 
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
-# Set arrows to browse through history with context
-autoload -Uz up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey '\eOA' up-line-or-beginning-search
-bindkey '\e[A' up-line-or-beginning-search
-bindkey '\eOB' down-line-or-beginning-search
-bindkey '\e[B' down-line-or-beginning-search
+#clipboard-kill-word () {
+#  zle kill-word
+#  print -rn $CUTBUFFER | xsel --input --clipboard
+#}
+#zle -N clipboard-kill-word
+#bindkey -e '\ed' clipboard-kill-word
+#
+#clipboard-backward-kill-word () {
+#  zle backward-kill-word
+#  print -rn $CUTBUFFER | xsel --input --clipboard
+#}
+#zle -N clipboard-backward-kill-word
+## Ctrl+DEL
+#bindkey -e '^\b' clipboard-backward-kill-word
+## Unbind Ctrl+W to build the habit of using Ctrl+DEL instead
+#bindkey -r '^W'
+#
+#clipboard-yank () {
+#  CUTBUFFER=$(xsel --output --clipboard </dev/null)
+#  zle yank
+#}
+#zle -N clipboard-yank
+#bindkey -e '^Y' clipboard-yank
+
 
 # Enable aws-cli completion
 autoload -Uz bashcompinit
 bashcompinit -i
 complete -C aws_completer aws
+
