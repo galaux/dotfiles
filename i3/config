@@ -149,9 +149,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # 'Home'
-bindsym 0x1008ff18 exec /usr/bin/nautilus
+bindsym 0x1008ff18 exec --no-startup-id /usr/bin/nautilus
 # 'Mail'
-bindsym 0x1008ff19 exec /usr/bin/vlc http://mafreebox.freebox.fr/freeboxtv/playlist.m3u
+#bindsym 0x1008ff19 exec --no-startup-id /usr/bin/vlc http://mafreebox.freebox.fr/freeboxtv/playlist.m3u
 # 'Power'
 #bindsym 0x1008ff2f exit
 # 'Calculator'
@@ -214,6 +214,7 @@ exec --no-startup-id /usr/bin/gnome-screensaver
 
 exec nm-applet
 exec blueman-applet
+exec pasystray
 exec feh --bg-fill /usr/share/backgrounds/wallpaper.jpg
 
 exec --no-startup-id i3-msg 'workspace 6; exec /usr/bin/urxvt'
