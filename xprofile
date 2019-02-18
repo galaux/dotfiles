@@ -33,6 +33,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # MUST be 0700.
 #export XDG_RUNTIME_DIR=
 
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export _SILENT_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 source ~/.config.d/xprofile 2> /dev/null
