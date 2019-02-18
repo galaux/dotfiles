@@ -1,70 +1,84 @@
-URxvt*font:             xft:DejaVu Sans Mono:pixelsize=12
-URxvt*boldFont:         xft:DejaVu Sans Mono:bold:pixelsize=12
+URxvt*font:             xft:DejaVu Sans Mono:size=9
+URxvt*boldFont:         xft:DejaVu Sans Mono:bold:size=9
+
+/* URxvt*font:xft:dejavu sans mono for powerline:medium:pixelsize=14,xft:dejavu sans mono for powerline:medium:pixelsize=13 */
+/* URxvt*boldFont:xft:dejavu sans mono for powerline:bold:pixelsize=14,xft:dejavu sans mono for powerline:bold:pixelsize=13 */
 
 URxvt*letterSpace:      -1
 
 URxvt*termName:         rxvt-256color
 
+URxvt.cursorBlink:      true
+!URxvt.pointerBlank: true
+
+! set the urgency hint for the WM on receipt of a bell character
+URxvt*urgentOnBell:     true
+
+!!URxvt.colorIT:         #87af5f
+!!URxvt.colorBD:         #d7d7d7
+!!URxvt.colorUL:         #87afd7
+
+!URxvt.print-pipe: cat > $(mktemp $HOME/urxvt.XXXXXX)
+
 !URxvt.scrollStyle:     rxvt
 URxvt.scrollBar:        false
 
-! do not scroll with output
+! Do not scroll to bottom when tty receives output
 URxvt*scrollTtyOutput:      false
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+! Scroll with scrollback buffer when tty receives new lines
+! (i.e. try to show the same lines) and scrollTtyOutput is False
 URxvt*scrollWithBuffer:     true
-! scroll back to the bottom on keypress
+! Scroll to bottom when a non-special key is pressed
 URxvt*scrollTtyKeypress:    true
 
 ! Save number lines in the scrollback buffer [default 1000]
 urxvt.saveLines: 100000
 
-!URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback,font-size,vim-insert
-URxvt.perl-ext-common:  default,matcher,vtwheel,-searchable-scrollback,font-size,keyboard-select
-URxvt.url-launcher:     /usr/bin/firefox
-URxvt.matcher.button:   2
-
-URxvt.matcher.rend.0: Uline fg6
-
-! extensions -> font-size
-! https://github.com/majutsushi/urxvt-font-size
-! AUR package urxvt-font-size-git
-URxvt.keysym.C-Down:   font-size:decrease
-URxvt.keysym.C-Up:     font-size:increase
-URxvt.keysym.C-S-Down: font-size:decglobal
-URxvt.keysym.C-S-Up:   font-size:incglobal
-URxvt.keysym.C-equal:  font-size:reset
-URxvt.keysym.C-slash:  font-size:show
-
-URxvt.keysym.C-Delete:  perl:matcher:last
-URxvt.keysym.M-Delete:  perl:matcher:list
-
-! extensions -> clipboard (requires xsel)
-! https://github.com/muennich/urxvt-perls
-!URxvt.keysym.C-C:      perl:clipboard:copy
-!URxvt.keysym.C-V:      perl:clipboard:paste
-
-URxvt*urgentOnBell:     true
-URxvt.cursorBlink:      1
-
-!URxvt.colorIT:         #87af5f
-!URxvt.colorBD:         #d7d7d7
-!URxvt.colorUL:         #87afd7
-
 ! Deactivate KEYCAP PICTURE INSERT MODE when C-S are pressed
 URxvt*iso14755:         false
 URxvt*iso14755_52:      false
 
-!URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
-!URxvt.url-select.launcher:  chromium
-!URxvt.url-select.underline: true
-!URxvt.keysym.M-b:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-r:           perl:keyboard-select:search
-
-!URxvt.keysym.M-s: perl:keyboard-select:activate
-!URxvt.keysym.M-r: perl:keyboard-select:search
+! matcher: Matches strings based on regexes, highlights them enable actions
+! vtwheel: Scroll wheel support for urxvt (clever wheel in ViM for instance)
+URxvt.perl-ext-common:  -default,font-size,matcher,vim-scrollback,vtwheel,clipboard
+! Specifies the program to be started with a URL argument
+! Used by the "selection-popup" and "matcher" perl extensions
+URxvt.url-launcher:     /usr/bin/firefox
 
 
-!URxvt.keysym.M-c:   perl:clipboard:copy
-!URxvt.keysym.M-v:   perl:clipboard:paste
-!URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+! Extension matcher conf
+! Set style for the default pattern to match URLs
+URxvt.matcher.rend.0:   Uline
+
+
+! Extension font-size config
+URxvt.keysym.C-0:       font-size:reset
+URxvt.keysym.C--:       font-size:decrease
+URxvt.keysym.C-equal:   font-size:increase
+
+
+! Extension vim-scrollback config
+! Configure alt-s as the keybinding to enter vim scrollback mode.
+urxvt.vim-scrollback: M-s
+
+! configure alt-p as the keybinding to paste mode.
+urxvt.vim-scrollback-paste: M-p
+
+! background and foreground colors for the status bar while in scrollback mode
+urxvt.vim-scrollback-bg: 16
+urxvt.vim-scrollback-fg: 10
+
+!! configure vim-scrollback specific matchers
+!urxvt.vim-scrollback.pattern.1: \\B(/\\S+?):(\\d+)(?=:|$)
+!urxvt.vim-scrollback.launcher.1: gvim +$2 $1
+
+! configure the command used when opening urls. Note: uses the same
+! configuration as the url launcher script shipped with urxvt.
+URxvt.urlLauncher: /usr/bin/firefox
+
+
+! Extension clipboard (requires xsel)
+!URxvt.keysym.A-y:      perl:clipboard:copy
+!URxvt.keysym.A-c:      perl:clipboard:copy
+URxvt.keysym.A-p:      perl:clipboard:paste
+URxvt.keysym.A-v:      perl:clipboard:paste
