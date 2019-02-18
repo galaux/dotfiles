@@ -1,19 +1,74 @@
-;; Some defaults from http://ensime.github.io/editors/emacs/learning/
+;; https://github.com/gjstein/emacs.d/blob/master/init.el
 
-;; global variables (might be overridden by package `better-defaults`)
-(setq inhibit-startup-screen t
-      create-lockfiles nil
-      column-number-mode t
-      scroll-error-top-bottom t
-      use-package-always-ensure t
-      sentence-end-double-space nil
+
+;; Install use-package if necessary
+(require 'package)
+(setq package-enable-at-startup nil)
+
+(setq
+ package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                    ("org" . "http://orgmode.org/elpa/")
+                    ("melpa" . "http://melpa.org/packages/")
+                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
+ package-archive-priorities '(("melpa-stable" . 1)))
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package diminish
+  :ensure t)
+
+;; Enable use-package
+(eval-when-compile
+  (require 'use-package))
+;; use-package always ensures packages are installed
+(setq use-package-always-ensure t)
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)                ;; if you use any :bind variant
+
+;; Splash Screen to Org-mode
+(setq inhibit-splash-screen t
+      initial-scratch-message nil
       mouse-yank-at-point t)
 
-;; buffer local variables
-(setq-default
- indent-tabs-mode nil
- tab-width 4
- c-basic-offset 4)
+;; Turn off the menu bar at the top of frames
+(menu-bar-mode -1)
+
+;; Remove the graphical toolbar at the top
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+
+;; Don't show native OS scroll bars for buffers because they're redundant
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+
+(custom-set-faces
+ '(default ((t (:family "DejaVu Sans Mono"
+                :foundry "PfEd"
+                :slant normal
+                :weight normal
+                :height 90
+                :width normal)))))
+
+(use-package base16-theme
+  :config
+  (load-theme 'base16-railscasts t))
+
+;; Tell Emacs to write `custom-set-variables` and `custom-set-faces`
+;; to this file that we will not load (prevents Emacs cluttering init.el.
+(setq custom-file (concat user-emacs-directory "/custom.el"))
+
+(setq create-lockfiles nil
+      scroll-error-top-bottom t
+      mouse-yank-at-point t)
 
 ;; Changes all yes/no questions to y/n type
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -27,95 +82,42 @@
 ;; Emacs can automatically create backup files. This tells Emacs to
 ;; put all backups in ~/.emacs.d/backups. More info:
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
-(setq backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                               "backups"))))
+(setq backup-directory-alist
+          `(("." . ,(concat user-emacs-directory "backups"))))
 
-;(electric-pair-mode 1)
-;(setq electric-pair-pairs
-;  '(
-;    (?\" . ?\")
-;    (?\' . ?\')
-;    (?\« . ?\»)
-;    ))
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs.d/auto-saves/" t)))
+
+(electric-pair-mode 1)
+(setq electric-pair-pairs
+  '(
+    (?\" . ?\")
+    (?\' . ?\')
+    (?\« . ?\»)
+    ))
 
 (setq electric-indent-mode nil)
 
-;; comments
-(defun toggle-comment-on-line ()
-  "comment or uncomment current line"
-  (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
-
 ;; turn on highlight matching brackets when cursor is on one
-;(setq show-paren-delay 0)
 (show-paren-mode 1)
 
-(require 'package)
-(setq
- package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                    ("org" . "http://orgmode.org/elpa/")
-                    ("melpa" . "http://melpa.org/packages/")
-                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
- package-archive-priorities '(("melpa-stable" . 1)))
+(use-package which-key
+  :config
+  (which-key-mode 1))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (avy
-      ;; DONE
-      which-key
-      clojure-mode-extra-font-locking
-      clojure-mode
-      markdown-mode
-      tagedit
-      smex
-      cider
-      company
-      ;; SHOULD I?
-      ido-completing-read+
-      ;; NOPE
-      solarized-theme
-      zenburn-theme
-      snazzy-theme
-      parinfer
-      better-defaults
-      ;; TODO
-      smartparens
-      expand-region
-      highlight-symbol
-      use-package
-      projectile
-      )))
- '(which-key-mode t))
-;clj-refactor 
+(use-package avy
+  :bind ("C-M-;" . 'avy-goto-char-2))
 
-(package-initialize)
-(when (not package-archive-contents)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
+(use-package markdown-mode)
 
-(which-key-mode)
-
-;(use-package ensime
-;  :ensure t
-;  :pin melpa-stable)
-
-;(setq ensime-startup-notification nil)
-
-;; Remember that this is just the Projectile suffix.
-;; To use Projectile for the first time, add a known project then use
-;; "C-c p p" to open a known project
 (use-package projectile
   :demand
   :init   (setq projectile-use-git-grep t)
   :config (projectile-global-mode t)
   :bind-keymap   ("C-c p" . projectile-command-map))
+
+(use-package clojure-mode)
+(use-package clojure-mode-extra-font-locking)
 
 (use-package parinfer
   :ensure t
@@ -135,14 +137,6 @@
     (add-hook 'scheme-mode-hook #'parinfer-mode)
     (add-hook 'lisp-mode-hook #'parinfer-mode)))
 
-(use-package highlight-symbol
-             :diminish highlight-symbol-mode
-             :commands highlight-symbol
-             :bind ("C-<f3>" . 'highlight-symbol)
-                   ("<f3>" . 'highlight-symbol-next)
-                   ("S-<f3>" . 'highlight-symbol-prev)
-                   ("M-<f3>" . 'highlight-symbol-query-replace))
-
 (use-package company
   :diminish company-mode
   :commands company-mode
@@ -158,30 +152,37 @@
   (define-key company-active-map [tab] nil)
   (define-key company-active-map (kbd "TAB") nil))
 
+;; TODO set it inside the use-package above
 (add-hook 'after-init-hook 'global-company-mode)
 
 (use-package expand-region
   :commands 'er/expand-region
   :bind ("C-=" . er/expand-region))
 
+
 (use-package smex
   :bind ("M-x" . 'smex))
 
-(add-to-list 'load-path "~/.emacs.d/customizations")
-(load "ui.el")
+;; A collection of paredit-like functions for editing in html-mode.
+;(use-package tagedit)
 
-(use-package avy
-  :bind ("C-M-;" . 'avy-goto-char-2))
+;(use-package ido-completing-read+)
 
+(use-package cider
+  ;; Because of bug in cider: https://github.com/clojure-emacs/cider/issues/2581
+  :pin melpa
+  :init
+  (setq
+   cider-repl-display-help-banner nil
+   ;cider-default-cljs-repl 'figwheel-main
+   ))
 
-(require 'clj-refactor)
+(use-package clj-refactor
+  :init
+  (progn
+    (add-hook 'clojure-mode-hook #'clj-refactor-mode)
+    ;; for adding require/use/import statements
+    (add-hook 'clojure-mode-hook #'yas-minor-mode))
+  :config
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 
-(defun my-clojure-mode-hook ()
-    (clj-refactor-mode 1)
-    (yas-minor-mode 1) ; for adding require/use/import statements
-    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-    (cljr-add-keybindings-with-prefix "C-c C-m"))
-
-(setq cljr-warn-on-eval nil)
-
-(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
