@@ -37,7 +37,8 @@
 ;; Splash Screen to Org-mode
 (setq inhibit-splash-screen t
       initial-scratch-message nil
-      mouse-yank-at-point t)
+      mouse-yank-at-point t
+      x-select-enable-clipboard nil)
 
 ;; Turn off the menu bar at the top of frames
 (menu-bar-mode -1)
@@ -185,4 +186,3 @@
     (add-hook 'clojure-mode-hook #'yas-minor-mode))
   :config
   (cljr-add-keybindings-with-prefix "C-c C-m"))
-
