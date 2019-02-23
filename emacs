@@ -184,5 +184,7 @@
     (add-hook 'clojure-mode-hook #'clj-refactor-mode)
     ;; for adding require/use/import statements
     (add-hook 'clojure-mode-hook #'yas-minor-mode))
+  (setq
+   cljr-warn-on-eval nil)
   :config
   (cljr-add-keybindings-with-prefix "C-c C-m"))
