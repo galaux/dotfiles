@@ -1,0 +1,5 @@
+.ensime
+.ensime_cache
+.projectile
+ensime.sbt
+tags
